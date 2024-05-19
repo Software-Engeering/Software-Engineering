@@ -1,5 +1,7 @@
 package software.softwareEngineering.entitiy;
 
+import java.util.ArrayList;
+import java.util.List;
 import lombok.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +13,7 @@ import jakarta.persistence.*;
 @Getter
 @ToString(exclude = "userPassword")
 @NoArgsConstructor
-public class user {
+public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +28,17 @@ public class user {
     @Column(name = "user_name")
     private String userName;
 
+    @OneToMany(mappedBy = "user")
+    private List<Playlist> playlists = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Preference> preferences = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Artist> artists = new ArrayList<>();
+
     @Builder
-    public user(int userId, String userEmail, String userPassword, String userName){
+    public User(int userId, String userEmail, String userPassword, String userName){
         this.userId = userId;
         this.userEmail = userEmail;
         this.userPassword = userPassword;
