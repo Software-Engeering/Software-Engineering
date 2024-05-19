@@ -11,22 +11,22 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "user")
 @Getter
-@ToString(exclude = "userPassword")
+@ToString(exclude = "password")
 @NoArgsConstructor
 public class User {
     @Id
     @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Long id;
+
+    @Column(name = "account")
+    private String account;
 
     @Column(name = "user_email", unique = true)
-    private String userEmail;
+    private String email;
 
     @Column(name = "user_password")
-    private String userPassword;
-
-    @Column(name = "user_name")
-    private String userName;
+    private String password;
 
     @OneToMany(mappedBy = "user")
     private List<Playlist> playlists = new ArrayList<>();
@@ -38,10 +38,10 @@ public class User {
     private List<Artist> artists = new ArrayList<>();
 
     @Builder
-    public User(int userId, String userEmail, String userPassword, String userName){
-        this.userId = userId;
-        this.userEmail = userEmail;
-        this.userPassword = userPassword;
-        this.userName = userName;
+    public User(Long id, String email, String password, String username){
+        this.id = id;
+        this.email = email;
+        this.password = password;
+        this.account = account;
     }
 }

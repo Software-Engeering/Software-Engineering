@@ -10,4 +10,15 @@ public class testController {
     public String index() {
         return "/index";
     }
+
+    @GetMapping("/loginForm")
+    public String loginForm() {
+        return "/loginForm";
+    }
+
+    @GetMapping("/joinForm")
+    public String joinForm() {
+        return "joinForm";
+    }
+
 }
