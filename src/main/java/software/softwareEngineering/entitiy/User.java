@@ -38,7 +38,7 @@ public class User {
     private List<Artist> artists = new ArrayList<>();
 
     @Builder
-    public User(Long id, String email, String password, String username){
+    public User(Long id, String email, String password, String account){
         this.id = id;
         this.email = email;
         this.password = password;
