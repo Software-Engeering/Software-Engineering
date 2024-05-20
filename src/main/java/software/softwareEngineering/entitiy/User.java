@@ -15,17 +15,14 @@ import jakarta.persistence.*;
 @NoArgsConstructor
 public class User {
     @Id
-    @Column(name = "user_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "account")
     private String account;
 
-    @Column(name = "user_email", unique = true)
+    @Column(unique = true)
     private String email;
 
-    @Column(name = "user_password")
     private String password;
 
     @OneToMany(mappedBy = "user")
