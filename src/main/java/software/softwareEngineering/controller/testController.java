@@ -5,6 +5,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import software.softwareEngineering.dto.UserDTO;
@@ -18,16 +19,19 @@ public class testController {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @GetMapping("/index")
+    // 메인 페이지
+    @GetMapping("/user/index")
     public String index() {
         return "index";
     }
 
+    // 로그인 페이지
     @GetMapping("/loginForm")
     public String loginForm() {
         return "loginForm";
     }
 
+    // 회원가입 페이지
     @GetMapping("/joinForm")
     public String joinForm() {
         return "joinForm";
@@ -35,7 +39,6 @@ public class testController {
 
     @PostMapping("/join")
     public String join(UserDTO userDTO) {
-        System.out.println("userDTO = " + userDTO);
 
         User user = User.builder()
             .account(userDTO.getAccount())
@@ -47,11 +50,40 @@ public class testController {
         return "redirect:loginForm";
     }
 
-    @GetMapping("/user/aa")
+    /*@GetMapping("/user/aa")
     @ResponseBody
     public UserDTO user(Authentication authentication) {
         UserDTO userDTO = (UserDTO) authentication.getPrincipal();
         System.out.println(userDTO.getAccount());
         return userDTO;
+    }*/
+
+    @GetMapping("/user/playlist/{id}")
+    public String playlist(@PathVariable(name = "id") Long id) {
+        return "";
+    }
+
+    // 플레이리스트 추가 페이지
+    @GetMapping("/user/playlist")
+    public String addplaylistForm() {
+        return "";
+    }
+
+    // 플레이리스트 추가
+    @PostMapping("/user/playlist")
+    public String addplaylist() {
+        return "";
+    }
+
+    // 프로필 편집 페이지
+    @GetMapping("/user/profile")
+    public String addprofileForm() {
+        return "";
+    }
+
+    // 프로필 편집
+    @PostMapping("/user/profile")
+    public String addprofile() {
+        return "";
     }
 }
