@@ -21,7 +21,6 @@
         flex-direction: column;
         align-items: center;
         padding: 118px 0 166px 0;
-        width: 1480px;
         box-sizing: border-box;
     }
      .content {
@@ -29,7 +28,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: fit-content;
         box-sizing: border-box;
     }
      .container-2 {
@@ -49,7 +47,6 @@
         flex-direction: column;
         width: fit-content;
         box-sizing: border-box;
-         margin-left: 515px;
     }
      .field {
         border-radius: 8px;
@@ -57,32 +54,27 @@
         background: #FFFFFF;
         margin-bottom: 16px;
         padding: 4px 15px;
+        height: 40px;
         width: 400px;
+        justify-content: center;
         box-sizing: border-box;
     }
      .button {
-        border-radius: 8px;
-        background: #000000;
-        display: flex;
-        padding: 8px 0.9px 8px 0;
-        width: 400px;
-        box-sizing: border-box;
-    }
-     .field-1 {
-        border-radius: 8px;
-        border: 1px solid #E0E0E0;
-        background: #FFFFFF;
-        margin-bottom: 16px;
-        padding: 4px 15px;
-        width: 400px;
-        box-sizing: border-box;
-    }
+         border-radius: 8px;
+         background: #000000;
+         display: flex;
+         padding: 8px 0.9px 8px 0;
+         width: 400px;
+         justify-content: center;
+         box-sizing: border-box;
+     }
      .container {
-        margin: 0 96px 44px 0;
         display: flex;
+        justify-content: center;
         flex-direction: row;
         width: 331px;
         box-sizing: border-box;
+        margin: 0 auto;
     }
 </style>
 
@@ -98,12 +90,17 @@
         <div class="input-and-button">
             <form action="/login" method="post">
                 <input type="text" name="username" placeholder="Username" class="field"/><br/>
-                <input type="password" name="password" placeholder="Password" class="field-1"/><br/>
+                <input type="password" name="password" placeholder="Password" class="field"/><br/>
                 <button class="button" type="submit">
                     <span style="font-family: Inter;font-weight: 500;font-size: 16px;line-height: 1.5;color:#FFFFFF;text-align:center;">로그인</span>
                 </button>
             </form>
         </div>
+        <a href="/findPassword">
+        <span class="container">
+      비밀번호 찾기
+    </span>
+        </a>
         <a href="/joinForm">
         <span class="container">
       회원가입
