@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <%--    jquery(ajax)--%>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
 
@@ -16,7 +18,7 @@
         width: fit-content;
         box-sizing: border-box;
     }
-    .grid .playlist-1 {
+    .grid .playlistText {
         overflow-wrap: break-word;
         font-family: 'Inter';
         font-weight: 500;
@@ -25,13 +27,14 @@
         color: #000000;
     }
     .grid .container {
-        margin-right: 14px;
         overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
+        margin: 0 0 0 0;
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        box-sizing: border-box;
+        justify-content: space-between;
+        align-content: center;
     }
     .grid .card {
         display: flex;
@@ -48,40 +51,6 @@
         height: 232px;
         box-sizing: border-box;
     }
-    .grid .playlist-2 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 600;
-        font-size: 32px;
-        letter-spacing: -1.3px;
-        line-height: 1;
-        color: #FFFFFF;
-    }
-    .grid .copy-1 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: flex-start;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-    .grid .playlist-21 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.5;
-        color: #000000;
-    }
-    .grid .container-1 {
-        margin-right: 16.8px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
-    }
     .grid .image-1 {
         border-radius: 8px;
         background: url('../assets/images/image_3.jpeg') 50% / cover no-repeat, linear-gradient(#FFC1C1, #FFC1C1);
@@ -91,82 +60,14 @@
         height: 232px;
         box-sizing: border-box;
     }
-    .grid .playlist-3 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 600;
-        font-size: 32px;
-        letter-spacing: -1.3px;
-        line-height: 1;
-        color: #FFFFFF;
-    }
-    .grid .copy-2 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: flex-start;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-    .grid .playlist-31 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.5;
-        color: #000000;
-    }
-    .grid .container-2 {
-        margin-right: 17.4px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
-    }
     .grid .image-2 {
         border-radius: 8px;
-        background: url('../assets/images/image_2.jpeg') 50% / cover no-repeat, url('../assets/images/image_3.jpeg') 50% / cover no-repeat, url('../assets/images/image.jpeg') 50% / cover no-repeat, linear-gradient(#F5F5F5, #F5F5F5);
+        background: url('../assets/images/image_2.jpeg') 50%  / cover no-repeat, linear-gradient(#F5F5F5, #F5F5F5);
         margin-bottom: 12px;
         padding: 16px 16px 0 16px;
         width: fit-content;
         height: 232px;
         box-sizing: border-box;
-    }
-    .grid .playlist-4 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 600;
-        font-size: 32px;
-        letter-spacing: -1.3px;
-        line-height: 1;
-        color: #FFFFFF;
-    }
-    .grid .copy-3 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: flex-start;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-    .grid .playlist-32 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.5;
-        color: #000000;
-    }
-    .grid .container-3 {
-        margin-right: 17.4px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
     }
     .grid .title {
         margin: 32px 0 0 0;
@@ -204,46 +105,14 @@
     }
     .grid .playlistGraphic {
         border-radius: 8px;
-        background: url('../assets/images/graphic.jpeg') 50% / cover no-repeat, linear-gradient(#B5DBFF, #B5DBFF);
         margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 14px 8px 0 16px;
+        width: 232px;
         height: 232px;
         box-sizing: border-box;
-    }
-    .grid .playlist-5 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 600;
-        font-size: 32px;
-        letter-spacing: -1.3px;
-        line-height: 1;
-        color: #FFFFFF;
-    }
-    .grid .copy-5 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: flex-start;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-    .grid .playlist-51 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.5;
-        color: #000000;
-    }
-    .grid .container-4 {
-        margin-right: 16.9px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
     }
     .grid .image-3 {
         border-radius: 8px;
@@ -254,41 +123,6 @@
         height: 232px;
         box-sizing: border-box;
     }
-    .grid .playlist-6 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 600;
-        font-size: 32px;
-        letter-spacing: -1.3px;
-        line-height: 1;
-        color: #FFFFFF;
-    }
-    .grid .copy-6 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: flex-start;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-    .grid .playlist-61 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.5;
-        color: #000000;
-    }
-    .grid .container-5 {
-        margin-right: 17.2px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
-    }
-
     .grid .image-4 {
         border-radius: 8px;
         background: url('../assets/images/image_3.jpeg') 50% / cover no-repeat, linear-gradient(#FFC1C1, #FFC1C1);
@@ -298,92 +132,48 @@
         height: 232px;
         box-sizing: border-box;
     }
-    .grid .playlist-7 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 600;
-        font-size: 32px;
-        letter-spacing: -1.3px;
-        line-height: 1;
-        color: #FFFFFF;
-    }
-    .grid .copy-7 {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        align-self: flex-start;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-    .grid .playlist-71 {
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 1.5;
-        color: #000000;
-    }
-    .grid .container-6 {
-        margin-right: 16.1px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 1.5;
-        color: #454545;
-    }
-    .grid .image-5 {
+    .grid .addButton {
         border-radius: 8px;
-        background: #F5F5F5;
+        background: transparent;
         position: relative;
-        width: 232px;
-        height: 232px;
-    }
-    .grid .button {
-        box-shadow: var(--button-shadow, 0px 1px 2px 0px rgba(0, 0, 0, 0.05));
-        border-radius: 10px;
-        background: #828282;
-        position: absolute;
-        left: 50%;
-        bottom: -1px;
-        translate: -50% 0;
-        display: flex;
-        width: 232px;
-        height: 233px;
-    }
-    .grid .primary-button {
-        border-radius: 60px;
-        background: rgba(255, 209, 209, 0.49);
-        position: relative;
-        width: 50px;
-        height: 50px;
-    }
-    .grid .container-7 {
-        position: absolute;
-        top: -13.5px;
-        right: 8.4px;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 700;
-        font-size: 48px;
-        line-height: 1.5;
-        color: #FFFFFF;
-    }
-    .grid .primary-button-1 {
-        opacity: 0.8;
-        border-radius: 60px;
-        background: #FF0000;
-        display: flex;
-        padding: 0 9px 0 8.5px;
-        box-sizing: border-box;
-    }
-    .grid .container-8 {
-        overflow-wrap: break-word;
         font-family: 'Inter';
         font-weight: 500;
         font-size: 40px;
-        line-height: 1.5;
+        color: #000000;
+        width: 232px;
+        height: 232px;
+        border: dashed;
+    }
+    .grid .addButton:hover {
+        background: #DADADA;
+    }
+    .grid .deleteButton
+    {
+        background-color:transparent;
+        border-radius: 60px;
+        font-size: 0px;
+        display: flex;
+        padding: 0;
+        box-sizing: border-box;
+        height: 33px;
+        width: 33px;
+        border: none;
+    }
+    .grid .deleteButton:hover
+    {
+        border-radius: 60px;
+        background: #FF0000;
+        font-family: 'Inter';
+        font-weight: 500;
+        font-size: 40px;
         color: #FFFFFF;
+        display: flex;
+        padding: 0;
+        box-sizing: border-box;
+        justify-content: center;
+        line-height: 23px;
+        height: 33px;
+        width: 33px;
     }
     .grid {
         background: #FFFFFF;
@@ -398,23 +188,11 @@
         margin: 0 0 40px 0;
         display: flex;
         flex-direction: row;
-        width: 100%;
+        width: 1200px;
         justify-content: space-between;
         box-sizing: border-box;
     }
-    .grid .playlistGraphic {
-        border-radius: 8px;
-        background: url('../assets/images/graphic.jpeg') 50% / cover no-repeat, linear-gradient(#B5DBFF, #B5DBFF);
-        margin-bottom: 12px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        padding: 14px 8px 0 16px;
-        width: 232px;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .playlist-11 {
+    .grid .playlistNumber {
         margin: 2px 16px 2px 0;
         display: inline-block;
         width: 156px;
@@ -425,15 +203,6 @@
         letter-spacing: -1.3px;
         line-height: 1;
         color: #FFFFFF;
-    }
-    .grid .container {
-        margin: 0 0 0 0;
-        display: flex;
-        width: 100%;
-        flex-direction: row;
-        box-sizing: border-box;
-        justify-content: space-between;
-        align-content: center;
     }
 </style>
 
@@ -454,66 +223,85 @@
     </div>
     <div class="large-grid">
         <div class="card">
-            <div class="playlistGraphic">
-                <div class="playlist-11">
+            <button class="addButton" id = "addButton1">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList1">
+                <div class="playlistNumber">
                     Playlist 1
                 </div>
-                <div class="primary-button-1">
-          <span class="container-8">
-            -
-          </span>
-                </div>
+                <button class="deleteButton">
+                    -
+                </button>
             </div>
             <div class="copy">
-        <span class="playlist-1">
+        <span class="playlistText" style="display: none" id="playlistText1">
           Playlist 1
         </span>
-                <span class="container">
+                <span class="container" style="display: none" id="container1">
           #카테고리
         </span>
             </div>
         </div>
         <div class="card">
-            <div class="image">
-        <span class="playlist-2">
+            <button class="addButton" style="display: none" id = "addButton2">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList2">
+                <div class="playlistNumber">
+                    Playlist 2
+                </div>
+                <button class="deleteButton">
+                    -
+                </button>
+            </div>
+            <div class="copy">
+        <span class="playlistText" style="display: none" id="playlistText2">
           Playlist 2
         </span>
-            </div>
-            <div class="copy-1">
-        <span class="playlist-21">
-          Playlist 2
-        </span>
-                <span class="container-1">
+                <span class="container" style="display: none" id="container2">
           #카테고리
         </span>
             </div>
         </div>
         <div class="card">
-            <div class="image-1">
-        <span class="playlist-3">
-          Playlist 3
-        </span>
+            <button class="addButton" style="display: none" id = "addButton3">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList3">
+                <div class="playlistNumber">
+                    Playlist 3
+                </div>
+                <button class="deleteButton">
+                    -
+                </button>
             </div>
-            <div class="copy-2">
-        <span class="playlist-31">
+            <div class="copy">
+        <span class="playlistText" style="display: none" id="playlistText3">
           Playlist 3
         </span>
-                <span class="container-2">
+                <span class="container" style="display: none" id="container3">
           #카테고리
         </span>
             </div>
         </div>
         <div class="card">
-            <div class="image-2">
-        <span class="playlist-4">
+            <button class="addButton" style="display: none" id = "addButton4">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList4">
+                <div class="playlistNumber">
+                    Playlist 4
+                </div>
+                <button class="deleteButton">
+                    -
+                </button>
+            </div>
+            <div class="copy">
+        <span class="playlistText" style="display: none" id="playlistText4">
           Playlist 4
         </span>
-            </div>
-            <div class="copy-3">
-        <span class="playlist-32">
-          Playlist 3
-        </span>
-                <span class="container-3">
+                <span class="container" style="display: none" id="container4">
           #카테고리
         </span>
             </div>
@@ -521,60 +309,131 @@
     </div>
     <div class="large-grid">
         <div class="card">
-            <div class="playlistGraphic">
-        <span class="playlist-5">
-          Playlist 5
-        </span>
-            </div>
-            <div class="copy-5">
-        <span class="playlist-51">
-          Playlist 5
-        </span>
-                <span class="container-4">
-          #카테고리
-        </span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="image-3">
-        <span class="playlist-6">
-          Playlist 6
-        </span>
-            </div>
-            <div class="copy-6">
-        <span class="playlist-61">
-          Playlist 6
-        </span>
-                <span class="container-5">
-          #카테고리
-        </span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="image-4">
-        <span class="playlist-7">
-          Playlist 7
-        </span>
-            </div>
-            <div class="copy-7">
-        <span class="playlist-71">
-          Playlist 7
-        </span>
-                <span class="container-6">
-          #카테고리
-        </span>
-            </div>
-        </div>
-        <div class="card">
-            <div class="image-5">
-                <div class="button">
-                    <div class="primary-button">
-            <span class="container-7">
-              +
-            </span>
-                    </div>
+            <button class="addButton" style="display: none" id = "addButton5">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList5">
+                <div class="playlistNumber">
+                    Playlist 5
                 </div>
+                <button class="deleteButton">
+                    -
+                </button>
             </div>
+            <div class="copy">
+        <span class="playlistText" style="display: none" id="playlistText5">
+          Playlist 5
+        </span>
+                <span class="container" style="display: none" id="container5">
+          #카테고리
+        </span>
+            </div>
+        </div>
+        <div class="card">
+            <button class="addButton" style="display: none" id = "addButton6">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList6">
+                <div class="playlistNumber">
+                    Playlist 6
+                </div>
+                <button class="deleteButton">
+                    -
+                </button>
+            </div>
+            <div class="copy">
+        <span class="playlistText" style="display: none" id="playlistText6">
+          Playlist 6
+        </span>
+                <span class="container" style="display: none" id="container6">
+          #카테고리
+        </span>
+            </div>
+        </div>
+        <div class="card">
+            <button class="addButton" style="display: none" id = "addButton7">
+                +
+            </button>
+            <div class="playlistGraphic" style="background-color: #B5FFDB; display: none" id="playList7">
+                <div class="playlistNumber">
+                    Playlist 7
+                </div>
+                <button class="deleteButton">
+                    -
+                </button>
+            </div>
+            <div class="copy">
+        <span class="playlistText" style="display: none" id="playlistText7">
+          Playlist 7
+        </span>
+                <span class="container" style="display: none" id="container7">
+          #카테고리
+        </span>
+            </div>
+        </div>
+        <div class="card">
+            <button class="addButton" style="display: none" id = "addButton8">
+                +
+            </button>
         </div>
     </div>
 </div>
+
+<script type="text/javascript">
+    $("#addButton1").click(function () {
+        $("#addButton1").hide();
+        $("#playList1").show();
+        $("#container1").show();
+        $("#playlistText1").show();
+        $("#addButton2").show();
+    });
+
+    $("#addButton2").click(function () {
+        $("#addButton2").hide();
+        $("#playList2").show();
+        $("#container2").show();
+        $("#playlistText2").show();
+        $("#addButton3").show();
+    });
+
+    $("#addButton3").click(function () {
+        $("#addButton3").hide();
+        $("#playList3").show();
+        $("#container3").show();
+        $("#playlistText3").show();
+        $("#addButton4").show();
+    });
+
+    $("#addButton4").click(function () {
+        $("#addButton4").hide();
+        $("#playList4").show();
+        $("#container4").show();
+        $("#playlistText4").show();
+        $("#addButton5").show();
+    });
+
+    $("#addButton5").click(function () {
+        $("#addButton5").hide();
+        $("#playList5").show();
+        $("#container5").show();
+        $("#playlistText5").show();
+        $("#addButton6").show();
+    });
+    $("#addButton6").click(function () {
+        $("#addButton6").hide();
+        $("#playList6").show();
+        $("#container6").show();
+        $("#playlistText6").show();
+        $("#addButton7").show();
+    });
+    $("#addButton7").click(function () {
+        $("#addButton7").hide();
+        $("#playList7").show();
+        $("#container7").show();
+        $("#playlistText7").show();
+        $("#addButton8").show();
+    });
+    $("#addButton8").click(function () {
+        $("#addButton8").hide();
+    });
+</script>
