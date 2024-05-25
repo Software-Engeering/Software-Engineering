@@ -21,12 +21,12 @@ public class PlaylistController {
     // 플레이리스트 추가 페이지
     @GetMapping("/playlist")
     public String addplaylistForm() {
-        return "";
+        return "addCategory";
     }
 
     // 플레이리스트 추가
     @PostMapping("/playlist")
     public String addplaylist() {
-        return "";
+        return "add Category";
     }
 }

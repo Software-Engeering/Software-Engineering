@@ -62,6 +62,11 @@ public class HomeController {
         return "redirect:loginForm";
     }
 
+    @GetMapping("/playlist")
+    public String addplaylistForm() {
+        return "addCategory";
+    }
+
     /*@GetMapping("/user/aa")
     @ResponseBody
     public UserDTO user(Authentication authentication) {
