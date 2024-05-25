@@ -77,10 +77,16 @@ public class HomeController {
 
         return "redirect:loginForm";
     }
-
+    //카테고리 추가 페이지
     @GetMapping("/playlist")
     public String addplaylistForm() {
         return "addCategory";
+    }
+
+    //플레이리스트 10들어있는 화면
+    @GetMapping("/showPlaylist")
+    public String showPlaylistForm() {
+        return "showPlaylist";
     }
 
     /*@GetMapping("/user/aa")
