@@ -27,7 +27,7 @@ public class Playlist {
 
     private String title;
 
-    private String information;
+    private String category;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

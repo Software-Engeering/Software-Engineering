@@ -28,4 +28,18 @@ public class Song {
     private Playlist playlist;
 
     // 추후 추가 예정
+    private String track_name;
+    private String artist_name;
+    private String released_data;
+    private String streams;
+    private String bpm;
+    private String octave;
+    private String mode;
+    private String danceability;
+    private String valence;
+    private String energy;
+    private String acousticness;
+    private String instrumentainess;
+    private String liveness;
+    private String speechiness;
 }
