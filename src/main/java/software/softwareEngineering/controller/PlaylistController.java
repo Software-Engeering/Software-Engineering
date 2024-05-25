@@ -26,13 +26,9 @@ public class PlaylistController {
 
     // 플레이리스트 추가
     @PostMapping("/playlist")
-<<<<<<< HEAD
+
     public String addPlaylist(String category) {
 
         return "";
-=======
-    public String addplaylist() {
-        return "add Category";
->>>>>>> 98838e9f91e89ee5999488b0a93e506261a51f77
     }
 }
