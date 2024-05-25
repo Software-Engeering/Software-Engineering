@@ -26,7 +26,8 @@ public class PlaylistController {
 
     // 플레이리스트 추가
     @PostMapping("/playlist")
-    public String addplaylist() {
+    public String addPlaylist(String category) {
+
         return "";
     }
 }

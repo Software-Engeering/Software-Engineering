@@ -14,13 +14,24 @@ public class PlaylistService {
 
     private final PlaylistRepository playlistRepository;
 
-   /* public List<PlaylistDTO> getPlaylists(List<Playlist> playlists) {
+    public List<PlaylistDTO> getPlaylists(List<Playlist> playlists) {
         List<PlaylistDTO> playlistDTOs = new ArrayList<>();
 
         for (Playlist playlist : playlists) {
             PlaylistDTO playlistDTO = PlaylistDTO.builder()
                 .id(playlist.getId())
-                .category()
+                .category(playlist.getCategory())
+                .build();
+
+            playlistDTOs.add(playlistDTO);
         }
-    }*/
+
+        return playlistDTOs;
+    }
+
+    public void makePlaylist(String category) {
+        Playlist playlist = new Playlist();
+
+        
+    }
 }

@@ -2,7 +2,9 @@ package software.softwareEngineering.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,23 +16,30 @@ import org.springframework.web.servlet.ModelAndView;
 import software.softwareEngineering.dto.PlaylistDTO;
 import software.softwareEngineering.dto.UserDTO;
 import software.softwareEngineering.entitiy.Playlist;
+import software.softwareEngineering.entitiy.Song;
 import software.softwareEngineering.entitiy.User;
+import software.softwareEngineering.repository.SongRepository;
 import software.softwareEngineering.repository.UserRepository;
+import software.softwareEngineering.service.PlaylistService;
 import software.softwareEngineering.service.UserService;
 
 @Controller
 @RequiredArgsConstructor
+@Log4j2
 public class HomeController {
 
     private final UserService userService;
+    private final PlaylistService playlistService;
 
     // 메인 페이지
     @GetMapping("/index")
     public ModelAndView index(Authentication authentication, ModelAndView mv) {
-        User user = (User) authentication.getPrincipal();
-        List<Playlist> playlists = user.getPlaylists();
+        UserDTO userDTO = (UserDTO) authentication.getPrincipal();
 
+        User user = userService.find(userDTO);
 
+        List<Playlist> playlist = user.getPlaylists();
+        List<PlaylistDTO> playlists = playlistService.getPlaylists(playlist);
 
         mv.addObject("playlist", playlists);
         mv.setViewName("jsonView");

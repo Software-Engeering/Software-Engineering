@@ -24,4 +24,8 @@ public class UserService {
 
         userRepository.save(user);
     }
+
+    public User find(UserDTO userDTO) {
+        return userRepository.getWithRoles(userDTO.getAccount());
+    }
 }
