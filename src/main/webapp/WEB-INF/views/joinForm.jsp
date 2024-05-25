@@ -59,15 +59,6 @@
     width: fit-content;
     box-sizing: border-box;
 }
-.field {
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    background: #FFFFFF;
-    margin-bottom: 16px;
-    padding: 4px 15px;
-    width: fit-content;
-    box-sizing: border-box;
-}
  .label {
     overflow-wrap: break-word;
     font-family: 'Inter';
@@ -97,15 +88,6 @@
     line-height:  1.5;
     color: #FFFFFF;
 }
-.field-1 {
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    background: #FFFFFF;
-    margin-bottom: 16px;
-    padding: 3px 15px;
-    width: fit-content;
-    box-sizing: border-box;
-}
 .label-1 {
     overflow-wrap: break-word;
     font-family:'Inter';
@@ -113,15 +95,6 @@
     font-size:  20px;
     line-height: 1.5;
     color: #828282;
-}
-.field-2 {
-    border-radius: 8px;
-    border: 1px solid #E0E0E0;
-    background: #FFFFFF;
-    margin-bottom: 16px;
-    padding: 4px 15px;
-    width: fit-content;
-    box-sizing: border-box;
 }
 .label-2 {
     overflow-wrap: break-word;
