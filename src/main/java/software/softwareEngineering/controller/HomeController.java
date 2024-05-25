@@ -59,9 +59,16 @@ public class HomeController {
         return "joinForm";
     }
 
+    // 비밀번호 찾기 페이지
     @GetMapping("/findPassword")
     public String findPassword() {
         return "findPassword";
+    }
+
+    // 플레이리스트 페이지
+    @GetMapping("/playlistForm")
+    public String playlistForm() {
+        return "playlistForm";
     }
 
     @PostMapping("/join")
@@ -69,6 +76,11 @@ public class HomeController {
         userService.join(userDTO);
 
         return "redirect:loginForm";
+    }
+
+    @GetMapping("/playlist")
+    public String addplaylistForm() {
+        return "addCategory";
     }
 
     /*@GetMapping("/user/aa")
