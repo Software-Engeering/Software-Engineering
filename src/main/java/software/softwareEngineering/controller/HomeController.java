@@ -50,6 +50,11 @@ public class HomeController {
         return "joinForm";
     }
 
+    @GetMapping("/findPassword")
+    public String findPassword() {
+        return "findPassword";
+    }
+
     @PostMapping("/join")
     public String join(UserDTO userDTO) {
         userService.join(userDTO);
