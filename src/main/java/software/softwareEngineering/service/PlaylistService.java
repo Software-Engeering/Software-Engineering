@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import software.softwareEngineering.dto.PlaylistDTO;
 import software.softwareEngineering.entitiy.Playlist;
+import software.softwareEngineering.entitiy.Song;
+import software.softwareEngineering.entitiy.User;
 import software.softwareEngineering.repository.PlaylistRepository;
 
 @Service
@@ -29,9 +31,16 @@ public class PlaylistService {
         return playlistDTOs;
     }
 
-    public void makePlaylist(String category) {
-        Playlist playlist = new Playlist();
+    public void makePlaylist(List<Song> songList, User user) {
+        Playlist playlist = Playlist.builder()
+            .title("Playlist")
+            .category("Exercise")
+            .songs(songList)
+            .user(user)
+            .build();
 
-        
+        playlistRepository.save(playlist);
+
+        user.addPlaylist(playlist);
     }
 }

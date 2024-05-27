@@ -11,8 +11,10 @@ import jakarta.persistence.*;
 @Entity
 @Table(name = "user")
 @Getter
+@Builder
 @ToString(exclude = "password")
 @NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,11 +34,7 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Artist> artists = new ArrayList<>();
 
-    @Builder
-    public User(Long id, String email, String password, String account){
-        this.id = id;
-        this.email = email;
-        this.password = password;
-        this.account = account;
+    public void addPlaylist(Playlist playlist) {
+        playlists.add(playlist);
     }
 }
