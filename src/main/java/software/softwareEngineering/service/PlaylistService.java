@@ -31,10 +31,10 @@ public class PlaylistService {
         return playlistDTOs;
     }
 
-    public void makePlaylist(List<Song> songList, User user) {
+    public void makePlaylist(List<Song> songList, User user, String category) {
         Playlist playlist = Playlist.builder()
             .title("Playlist")
-            .category("Exercise")
+            .category(category)
             .songs(songList)
             .user(user)
             .build();

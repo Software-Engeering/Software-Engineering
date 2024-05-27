@@ -9,20 +9,20 @@ import software.softwareEngineering.entitiy.Song;
 
 public interface SongRepository extends JpaRepository<Song, Long> {
 
-    @Query("select s from Song s where s.mode = 'Major'")
+    @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getExercise(Pageable pageable);
 
-    @Query("select s from Song s where s.mode = 'Major'")
+    @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getDrive(Pageable pageable);
 
-    @Query("select s from Song s where s.mode = 'Major'")
+    @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getStudy(Pageable pageable);
 
-    @Query("select s from Song s where s.mode = 'Major'")
+    @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getFun(Pageable pageable);
 
-    @Query("select s from Song s where s.mode = 'Major'")
+    @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getMidnight(Pageable pageable);
-    @Query("select s from Song s where s.mode = 'Major'")
+    @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getRain(Pageable pageable);
 }

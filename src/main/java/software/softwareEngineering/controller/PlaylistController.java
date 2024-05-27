@@ -69,7 +69,7 @@ public class PlaylistController {
 
         User user = userService.find(userDTO);
         List<Song> songList = songService.makeSongList(category);
-        playlistService.makePlaylist(songList, user);
+        playlistService.makePlaylist(songList, user, category);
 
         return "redirect:playlistForm";
     }
