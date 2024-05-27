@@ -1,3 +1,4 @@
+<%--
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,13 +10,13 @@
 <body>
 <div class="outside">
     <div class="container">
-        <p class ="mainName">playlist_1</p><%-- 플레이 리스트 이름 --%>
+        <p class ="mainName">playlist_1</p>&lt;%&ndash; 플레이 리스트 이름 &ndash;%&gt;
 
-        <div><%-- 트랙 개수 --%>
+        <div>&lt;%&ndash; 트랙 개수 &ndash;%&gt;
             <p class ="track">트랙 <span id="listCount">0</span>개</p>
         </div>
 
-        <div class="header"><%-- 노래 재목,넘버링,등 --%>
+        <div class="header">&lt;%&ndash; 노래 재목,넘버링,등 &ndash;%&gt;
         <span class="number">
            Number
         </span>
@@ -33,10 +34,10 @@
         </span>
         </div>
 
-        <ol class="list"><%-- 플레이 리스트 --%>
+        <ol class="list">&lt;%&ndash; 플레이 리스트 &ndash;%&gt;
         </ol>
 
-    <div class="evaluation"> <%-- 만족도 평가 --%>
+    <div class="evaluation"> &lt;%&ndash; 만족도 평가 &ndash;%&gt;
          <button class="good">
          </button>
 
@@ -178,4 +179,40 @@
     });
 
 
-</script>
+</script>--%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist</title>
+</head>
+<body>
+
+<div id="songListContainer">
+    <%-- 플레이리스트에 포함된 노래 목록을 출력하는 영역 --%>
+    <table>
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Time</th>
+            <th>Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${songList}" var="song">
+            <tr>
+                <td>${song.title}</td>
+                <td>${song.artist}</td>
+                <td>${song.time}</td>
+                <td>${song.date}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

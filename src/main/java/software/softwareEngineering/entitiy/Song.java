@@ -42,4 +42,8 @@ public class Song {
     private String instrumentainess;
     private String liveness;
     private String speechiness;
+
+    public void addPlayList(Playlist playlist) {
+        this.playlist = playlist;
+    }
 }

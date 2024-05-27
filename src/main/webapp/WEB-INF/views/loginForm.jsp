@@ -115,6 +115,7 @@
 </html>
 
 
+<%--
 <script type="text/javascript">
     $(document).ready(function(){
         //jquery 는 js를 쉽게 쓸 수 있도록 도와주는 라이브러리입니다. 대표적으로 $ 가 있음.
@@ -147,4 +148,4 @@
 
 
     });
-</script>
+</script>--%>

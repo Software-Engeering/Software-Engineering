@@ -39,6 +39,10 @@ public class PlaylistService {
             .user(user)
             .build();
 
+        for (Song song : songList) {
+            song.addPlayList(playlist);
+        }
+
         playlistRepository.save(playlist);
 
         user.addPlaylist(playlist);

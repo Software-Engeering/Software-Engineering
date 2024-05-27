@@ -1,10 +1,12 @@
+
+<%--
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <%--    jquery(ajax)--%>
+    &lt;%&ndash;    jquery(ajax)&ndash;%&gt;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -436,4 +438,138 @@
     $("#addButton8").click(function () {
         $("#addButton8").hide();
     });
+</script>--%>
+
+<%--
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+<div id="playlistContainer">
+    <!-- 여기에 플레이리스트가 동적으로 추가될 것입니다. -->
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    var playlists = ${playlist}; // model로부터 받은 데이터를 JavaScript 변수에 할당합니다.
+    // 받아온 플레이리스트 데이터를 순회하며 화면에 출력합니다.
+    playlists.forEach(function (playlist) {
+      var playlistElement = '<div>';
+      playlistElement += '<p>ID: ' + playlist.id + '</p>';
+      playlistElement += '<p>Category: ' + playlist.category + '</p>';
+      playlistElement += '</div>';
+
+      // 플레이리스트를 출력할 컨테이너에 추가합니다.
+      $('#playlistContainer').append(playlistElement);
+    });
+  });
 </script>
+
+</body>
+</html>--%>
+
+
+<%--
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist</title>
+</head>
+<body>
+
+<div id="playlistContainer">
+    &lt;%&ndash; 플레이리스트가 동적으로 추가될 영역 &ndash;%&gt;
+    <c:forEach items="${playlist}" var="playlistItem">
+        <div>
+            <p>ID: ${playlistItem.id}</p>
+            <p>Category: ${playlistItem.category}</p>
+        </div>
+    </c:forEach>
+</div>
+
+</body>
+</html>--%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Playlist</title>
+    <style>
+      #playlistContainer {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 5px;
+      }
+      .playlistItem {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .playlistItem:hover {
+        background-color: #f0f0f0;
+      }
+      .playlistItem p {
+        margin: 5px 0;
+        font-size: 16px;
+        color: #333;
+      }
+      .addCategoryButton {
+        width: 150px;
+        height: 150px;
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .addCategoryButton:hover {
+        background-color: #f0f0f0;
+      }
+    </style>
+    <script>
+      // 각 플레이리스트 아이템을 클릭했을 때 이동하는 함수
+      function goToPlaylist(id) {
+        window.location.href = "/user/playlist/" + id;
+      }
+
+      // addCategory 페이지로 이동하는 함수
+      function goToAddCategory() {
+        window.location.href = "/user/playlist";
+      }
+    </script>
+</head>
+<body>
+
+<div id="playlistContainer">
+    <%-- 플레이리스트가 동적으로 추가될 영역 --%>
+    <c:forEach items="${playlist}" var="playlistItem">
+        <div class="playlistItem" onclick="goToPlaylist(${playlistItem.id})">
+            <p><strong>ID:</strong> ${playlistItem.id}</p>
+            <p><strong>Category:</strong> ${playlistItem.category}</p>
+        </div>
+    </c:forEach>
+
+    <div class="addCategoryButton" onclick="goToAddCategory()">
+        <p>Add Playlist</p>
+    </div>
+</div>
+
+</body>
+</html>
