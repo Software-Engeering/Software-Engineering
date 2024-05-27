@@ -1,3 +1,4 @@
+<%--
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -142,4 +143,75 @@
     flex-direction: row;
     width: 262px;
     box-sizing: border-box;
-}</style>
+}</style>--%>
+
+<%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>카테고리 선택</title>
+    <style>
+      /* 스타일 코드 여기에 붙여넣기 */
+    </style>
+</head>
+<body>
+<form id="categoryForm" action="/user/playlist" method="post"> <!-- 폼 추가 -->
+    <div class="container">
+        <div class="container-6">
+            카테고리 선택
+        </div>
+        <div class="container-1">
+            <button class="frame-1" type="button" onclick="submitForm('drive')">
+      <span class="container-2">
+        #운전
+      </span>
+            </button>
+            <button class="frame-2" type="button" onclick="submitForm('exercise')">
+      <span class="container-3">
+        #운동
+      </span>
+            </button>
+        </div>
+
+        <div class="container-1">
+            <button class="frame-1" type="button" onclick="submitForm('study')">
+      <span class="container-2">
+        #공부
+      </span>
+            </button>
+            <button class="frame-2" type="button" onclick="submitForm('fun')">
+      <span class="container-3">
+        #신남
+      </span>
+            </button>
+        </div>
+
+        <div class="container-1">
+            <button class="frame-1" type="button" onclick="submitForm('midnight')">
+      <span class="container-2">
+        #새벽
+      </span>
+            </button>
+            <button class="frame-2" type="button" onclick="submitForm('rain')">
+      <span class="container-3">
+        #비
+      </span>
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+  // 버튼 클릭시 폼 서브밋하는 함수
+  function submitForm(category) {
+    var form = document.getElementById('categoryForm');
+    var input = document.createElement('input');
+    input.type = 'hidden';
+    input.name = 'category';
+    input.value = category;
+    form.appendChild(input);
+    form.submit();
+  }
+</script>
+</body>
+</html>

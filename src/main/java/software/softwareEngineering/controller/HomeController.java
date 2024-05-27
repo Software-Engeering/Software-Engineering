@@ -6,6 +6,7 @@ import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,11 +32,11 @@ import software.softwareEngineering.service.UserService;
 public class HomeController {
 
     private final UserService userService;
-    private final PlaylistService playlistService;
 
-    // 메인 페이지
+   /* // 메인 페이지
     @GetMapping("/index")
-    public String index(Authentication authentication, Model model) {
+    public String index(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserDTO userDTO = (UserDTO) authentication.getPrincipal();
 
         User user = userService.find(userDTO);
@@ -46,7 +47,7 @@ public class HomeController {
         model.addAttribute("playlist", playlists);
 
         return "index";
-    }
+    }*/
 
     // 로그인 페이지
     @GetMapping("/loginForm")
@@ -66,27 +67,10 @@ public class HomeController {
         return "findPassword";
     }
 
-    // 플레이리스트 페이지
-    @GetMapping("/playlistForm")
-    public String playlistForm() {
-        return "playlistForm";
-    }
-
     @PostMapping("/join")
     public String join(UserDTO userDTO) {
         userService.join(userDTO);
 
         return "redirect:loginForm";
-    }
-    //카테고리 추가 페이지
-    @GetMapping("/playlist")
-    public String addplaylistForm() {
-        return "addCategory";
-    }
-
-    //플레이리스트 10들어있는 화면
-    @GetMapping("/showPlaylist")
-    public String showPlaylistForm() {
-        return "showPlaylist";
     }
 }
