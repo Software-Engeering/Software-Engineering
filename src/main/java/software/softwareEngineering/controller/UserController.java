@@ -16,14 +16,8 @@ import software.softwareEngineering.repository.UserRepository;
 public class UserController {
 
     // 프로필 편집 페이지
-    @GetMapping("/profile")
-    public String addprofileForm() {
-        return "";
-    }
-
-    // 프로필 편집
-    @PostMapping("/profile")
-    public String addprofile() {
-        return "";
+    @GetMapping("/profileForm")
+    public String profileForm() {
+        return "profileForm";
     }
 }
