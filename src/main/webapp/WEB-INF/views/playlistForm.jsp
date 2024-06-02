@@ -1,10 +1,10 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <%--    jquery(ajax)--%>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
@@ -205,6 +205,75 @@
         color: #FFFFFF;
     }
 </style>
+<script type="text/javascript">
+
+    window.onload=function(){
+        refreshPlaylist();
+    }
+
+    $(document).on("click", ".addButton", function () {
+        goToAddCategory();
+    });
+
+    function refreshPlaylist(){
+        let playlist = [
+            <c:forEach items="${playlist}" var="playlistItem">
+            {
+                id: ${playlistItem.id},
+                category: "${playlistItem.category}",
+                //title: "${playlistItem.title}"
+            },
+            </c:forEach>
+        ];
+
+        let cdNum;
+        let i = -1;
+
+        playlist.forEach(playlistItem => {
+            console.log(playlistItem);
+            i = playlistItem.id;
+            cdNum = $(".card").eq(i);
+            cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
+                + i + '" onclick=goToPlaylist(this.id)>' + '<div class="playlistNumber">'
+                + playlistItem.title + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(this.id);"> - </button> </div> <div class="copy"> <span class="playlistText">'
+                + playlistItem.title + '</span> <span class="container">'
+                + playlistItem.category + '</span> </div>');
+        })
+
+        i++;
+        cdNum = $(".card").eq(i);
+        cdNum.append('<button class="addButton" id = "addButton"> + </button>');
+    }
+
+    function deleteAll(){
+        let cdNum;
+        for (let j = 0; j < 8; j++){
+            cdNum = $(".card").eq(j);
+            cdNum.empty();
+        }
+    }
+
+    function deletePlaylist(id){
+        if (confirm('정말 삭제하시겠습니까?')) {
+            //값 삭제 요청
+            deleteAll();
+            refreshPlaylist();
+        }
+    }
+
+    function goToPlaylist(id){
+        window.location.href = "/user/playlist/" + id;
+    }
+
+    function goToAddCategory(){
+        window.location.href = "/user/playlist";
+    }
+
+    function gotoProfile(){
+        window.location.href = "/user/profileForm";
+    }
+
+</script>
 
 <div class="grid">
     <div class="container">
@@ -213,7 +282,7 @@
         Hello ID
       </span>
         </div>
-        <div class="graphic">
+        <div class="graphic" onclick="gotoProfile()">
         </div>
     </div>
     <div class="copy-4">
@@ -223,9 +292,6 @@
     </div>
     <div class="large-grid">
         <div class="card">
-            <button class="addButton" id = "addButton">
-                +
-            </button>
         </div>
         <div class="card">
         </div>
@@ -248,29 +314,3 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    let i = 0;
-    let cdNum = $(".card").eq(i);
-
-    $(document).on("click", ".addButton", function () {
-        $("button").remove("#addButton");
-        goToAddCategory();
-        i++;
-        cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
-            + i + '" onclick=goToPlaylist(this.id)>' + '<div class="playlistNumber">Playlist'
-            + i + '</div> <button class="deleteButton"> - </button> </div> <div class="copy"> <span class="playlistText">Playlist'
-            + i + '</span> <span class="container">#카테고리 </span> </div>');
-        cdNum = $(".card").eq(i);
-        cdNum.append('<button class="addButton" id = "addButton"> + </button>');
-    });
-
-    function goToPlaylist(id){
-        window.location.href = "/user/playlist/" + id;
-    }
-
-    function goToAddCategory(){
-        window.location.href = "/user/playlist";
-    }
-
-</script>
