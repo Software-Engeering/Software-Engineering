@@ -276,7 +276,7 @@
                         cdNum = $(".card").eq(i);
                         cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
                             + id + '" onclick=goToPlaylist(id)>' + '<div class="playlistNumber">'
-                            + product["title"] + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(id)"> - </button> </div> <div class="copy"> <span class="playlistText">'
+                            + product["title"] + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(\'' + id + '\')"> - </button> </div> <div class="copy"> <span class="playlistText">'
                             + product["title"] + '</span> <span class="container">#' + product["category"] + '</span> </div>');
                         i++;
                     }
@@ -295,8 +295,9 @@
     function deletePlaylist(id){
         if (confirm("정말로 삭제하시겠습니까?")){
             //삭제
-            window.location.href = "/user/playlist/delete" + id;
-            refreshPlaylist();
+            console.log("Deleting playlist with ID: " + id);  // ID 값이 제대로 전달되는지 확인
+            window.location.href = "/user/playlist/delete/" + id;
+            //refreshPlaylist();
         }
     }
 

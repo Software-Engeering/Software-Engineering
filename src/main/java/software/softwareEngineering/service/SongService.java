@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import software.softwareEngineering.dto.SongDTO;
 import software.softwareEngineering.entitiy.Playlist;
 import software.softwareEngineering.entitiy.Song;
@@ -65,5 +66,10 @@ public class SongService {
         }
 
         return songDTOList;
+    }
+
+    @Transactional
+    public void deleteSongsByPlaylistId(Long playlistId) {
+        songRepository.deleteByPlaylistId(playlistId);
     }
 }

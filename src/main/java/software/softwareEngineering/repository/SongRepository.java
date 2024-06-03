@@ -11,7 +11,6 @@ public interface SongRepository extends JpaRepository<Song, Long> {
 
     @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getExercise(Pageable pageable);
-
     @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getDrive(Pageable pageable);
 
@@ -25,4 +24,6 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     List<Song> getMidnight(Pageable pageable);
     @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getRain(Pageable pageable);
+
+    void deleteByPlaylistId(Long playlistId);
 }

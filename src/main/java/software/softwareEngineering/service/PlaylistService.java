@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import software.softwareEngineering.dto.PlaylistDTO;
 import software.softwareEngineering.entitiy.Playlist;
 import software.softwareEngineering.entitiy.Song;
@@ -49,6 +50,7 @@ public class PlaylistService {
         user.addPlaylist(playlist);
     }
 
+    @Transactional
     public void deletePlaylist(Long id) {
         playlistRepository.deleteById(id);
     }
