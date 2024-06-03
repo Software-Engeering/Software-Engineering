@@ -23,6 +23,7 @@ public class PlaylistService {
             PlaylistDTO playlistDTO = PlaylistDTO.builder()
                 .id(playlist.getId())
                 .category(playlist.getCategory())
+                    .title(playlist.getTitle())
                 .build();
 
             playlistDTOs.add(playlistDTO);
