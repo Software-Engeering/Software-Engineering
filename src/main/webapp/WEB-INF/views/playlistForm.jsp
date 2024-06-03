@@ -248,6 +248,41 @@
         </div>
     </div>
 </div>
+<div id="playListArea"></div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "POST",
+            url: "/user/getPlaylist",
+            data: {/* Any additional parameters you want to send */
+                // category : "study"
+            },
+            success: function(response) {
+                var playList = response;
+                console.log(playList);
+                $('#playListArea').empty();
+                // Loop through the product list and generate HTML for each product card
+                playList.forEach(function(product) {
+                    var playListCardHtml = '<div class="" id="' + product["id"] + '" >';
+                    playListCardHtml += '<img class="" src="/image/' + product["img_name"] + '" alt="no image">';
+                    playListCardHtml += '<div class=""><p>' + product["title"] + '</p></div>';
+                    // playListCardHtml += '<div class="description">' + product["description"] + '</div>';
+                    playListCardHtml += '</div>';
+
+                    $('#playListArea').append(playListCardHtml);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax 호출 error 발생");
+            }
+        });
+    });
+
+</script>
+
 
 <script type="text/javascript">
     let i = 0;

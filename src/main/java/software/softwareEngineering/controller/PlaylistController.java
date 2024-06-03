@@ -1,16 +1,17 @@
 package software.softwareEngineering.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import software.softwareEngineering.dto.PlaylistDTO;
 import software.softwareEngineering.dto.SongDTO;
 import software.softwareEngineering.dto.UserDTO;
@@ -43,6 +44,18 @@ public class PlaylistController {
         model.addAttribute("playlist", playlists);
 
         return "playlistForm";
+    }
+
+    @RequestMapping(value = "/getPlaylist", method = RequestMethod.POST)
+    public @ResponseBody List<PlaylistDTO> getPlayList(Authentication authentication, @RequestParam Map<String, String> allParams) {
+        UserDTO userDTO = (UserDTO) authentication.getPrincipal();
+        User user = userService.find(userDTO);
+
+
+        List<Playlist> playlist = user.getPlaylists();
+        List<PlaylistDTO> playlists = playlistService.getPlaylists(playlist);
+
+        return playlists;
     }
 
     // 플레이리스트에 들어있는 노래 출력 페이지
