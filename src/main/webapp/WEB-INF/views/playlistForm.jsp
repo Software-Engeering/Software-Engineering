@@ -250,20 +250,56 @@
 </div>
 
 <script type="text/javascript">
-    let i = 0;
-    let cdNum = $(".card").eq(i);
+    let cdNum;
+
+    window.onload = displayPlaylist();
 
     $(document).on("click", ".addButton", function () {
-        $("button").remove("#addButton");
         goToAddCategory();
-        i++;
-        cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
-            + i + '" onclick=goToPlaylist(this.id)>' + '<div class="playlistNumber">Playlist'
-            + i + '</div> <button class="deleteButton"> - </button> </div> <div class="copy"> <span class="playlistText">Playlist'
-            + i + '</span> <span class="container">#카테고리 </span> </div>');
-        cdNum = $(".card").eq(i);
-        cdNum.append('<button class="addButton" id = "addButton"> + </button>');
     });
+
+    function refreshPlaylist(){
+        for (let j = 0; j < 9; j++){
+            cdNum = $(".card").eq(j);
+            cdNum.empty();
+        }
+        displayPlaylist();
+    }
+
+    function displayPlaylist(){
+        $.ajax({
+            type: "POST",
+            url: "/user/getPlaylist",
+            data: {/* Any additional parameters you want to send */
+                // category : "study"
+            },
+            success: function (response) {
+                let i = 0;
+                let playList = response;
+                console.log(playList);
+                playList.forEach(function(product) {
+                    let id = product["id"];
+                    cdNum =  $(".card").eq(i);
+                    cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
+                        + id + '" onclick=goToPlaylist(id)>' + '<div class="playlistNumber">'
+                        + product["title"] + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(id)"> - </button> </div> <div class="copy"> <span class="playlistText">'
+                        + product["title"] + '</span> <span class="container">' + product["category"] + '</span> </div>');
+                    i++;
+                });
+                cdNum = $(".card").eq(i);
+                cdNum.append('<button class="addButton" id = "addButton"> + </button>');
+            },
+            error: function (xhr, status, error) {
+                console.error("ajax 호출 error 발생");
+            }
+        });
+    }
+
+    function deletePlaylist(id){
+        if (confirm("정말로 삭제하시겠습니까?")){
+            //삭제
+        }
+    }
 
     function goToPlaylist(id){
         window.location.href = "/user/playlist/" + id;
