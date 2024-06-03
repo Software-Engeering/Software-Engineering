@@ -223,9 +223,6 @@
     </div>
     <div class="large-grid">
         <div class="card">
-            <button class="addButton" id = "addButton">
-                +
-            </button>
         </div>
         <div class="card">
         </div>
@@ -242,9 +239,6 @@
         <div class="card">
         </div>
         <div class="card">
-            <button class="addButton" style="display: none" id = "addButton8">
-                +
-            </button>
         </div>
     </div>
 </div>
@@ -276,18 +270,21 @@
             success: function (response) {
                 let i = 0;
                 let playList = response;
-                console.log(playList);
                 playList.forEach(function(product) {
-                    let id = product["id"];
-                    cdNum =  $(".card").eq(i);
-                    cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
-                        + id + '" onclick=goToPlaylist(id)>' + '<div class="playlistNumber">'
-                        + product["title"] + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(id)"> - </button> </div> <div class="copy"> <span class="playlistText">'
-                        + product["title"] + '</span> <span class="container">' + product["category"] + '</span> </div>');
-                    i++;
+                    if (i < 9) {
+                        let id = product["id"];
+                        cdNum = $(".card").eq(i);
+                        cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
+                            + id + '" onclick=goToPlaylist(id)>' + '<div class="playlistNumber">'
+                            + product["title"] + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(id)"> - </button> </div> <div class="copy"> <span class="playlistText">'
+                            + product["title"] + '</span> <span class="container">#' + product["category"] + '</span> </div>');
+                        i++;
+                    }
                 });
-                cdNum = $(".card").eq(i);
-                cdNum.append('<button class="addButton" id = "addButton"> + </button>');
+                if (i < 7) {
+                    cdNum = $(".card").eq(i);
+                    cdNum.append('<button class="addButton" id = "addButton"> + </button>');
+                }
             },
             error: function (xhr, status, error) {
                 console.error("ajax 호출 error 발생");
@@ -298,6 +295,7 @@
     function deletePlaylist(id){
         if (confirm("정말로 삭제하시겠습니까?")){
             //삭제
+            refreshPlaylist();
         }
     }
 
