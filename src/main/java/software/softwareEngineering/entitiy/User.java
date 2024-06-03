@@ -38,4 +38,8 @@ public class User {
     public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
     }
+
+    public void deletePlaylist(Playlist playlist) {
+        playlists.remove(playlist);
+    }
 }

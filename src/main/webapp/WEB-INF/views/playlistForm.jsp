@@ -295,6 +295,7 @@
     function deletePlaylist(id){
         if (confirm("정말로 삭제하시겠습니까?")){
             //삭제
+            window.location.href = "/user/playlist/delete" + id;
             refreshPlaylist();
         }
     }

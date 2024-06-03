@@ -48,4 +48,14 @@ public class PlaylistService {
 
         user.addPlaylist(playlist);
     }
+
+    public void deletePlaylist(Long id) {
+        playlistRepository.deleteById(id);
+    }
+
+    public Playlist findPlaylist(Long id) {
+        Playlist playlist = playlistRepository.findById(id).get();
+
+        return playlist;
+    }
 }

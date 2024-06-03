@@ -86,4 +86,16 @@ public class PlaylistController {
 
         return "redirect:playlistForm";
     }
+
+    @PostMapping("/playlist/delete/{id}")
+    public String deletePlaylist(@PathVariable(name = "id") Long id, Authentication authentication) {
+        Playlist playlist = playlistService.findPlaylist(id);
+        UserDTO userDTO = (UserDTO) authentication.getPrincipal();
+
+        User user = userService.find(userDTO);
+        user.deletePlaylist(playlist);
+        playlistService.deletePlaylist(id);
+
+        return "redirect:playlistForm";
+    }
 }
