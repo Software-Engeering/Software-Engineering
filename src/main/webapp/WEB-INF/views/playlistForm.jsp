@@ -213,7 +213,7 @@
         Hello ID
       </span>
         </div>
-        <div class="graphic">
+        <div class="graphic" onclick="goToProfile()">
         </div>
     </div>
     <div class="copy-4">
@@ -271,13 +271,13 @@
                 let i = 0;
                 let playList = response;
                 playList.forEach(function(product) {
-                    if (i < 9) {
+                    if (i < 8) {
                         let id = product["id"];
                         cdNum = $(".card").eq(i);
                         cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
                             + id + '" onclick=goToPlaylist(id)>' + '<div class="playlistNumber">'
-                            + product["title"] + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(\'' + id + '\')"> - </button> </div> <div class="copy"> <span class="playlistText">'
-                            + product["title"] + '</span> <span class="container">#' + product["category"] + '</span> </div>');
+                            + product["title"] + (i+1) + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(id)"> - </button> </div> <div class="copy"> <span class="playlistText">'
+                            + product["title"] + (i+1) + '</span> <span class="container">#' + product["category"] + '</span> </div>');
                         i++;
                     }
                 });
@@ -294,10 +294,9 @@
 
     function deletePlaylist(id){
         if (confirm("정말로 삭제하시겠습니까?")){
-            //삭제
             console.log("Deleting playlist with ID: " + id);  // ID 값이 제대로 전달되는지 확인
             window.location.href = "/user/playlist/delete/" + id;
-            //refreshPlaylist();
+            refreshPlaylist();
         }
     }
 
@@ -307,6 +306,10 @@
 
     function goToAddCategory(){
         window.location.href = "/user/playlist";
+    }
+
+    function goToProfile(){
+        window.location.href = "/user/profileForm";
     }
 
 </script>
