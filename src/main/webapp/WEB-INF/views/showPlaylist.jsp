@@ -217,7 +217,7 @@
             type: "GET",
             url: "/user/getSongs",
             data: {/* Any additional parameters you want to send */
-                id : 6
+                id : ${id}
             },
             success: function(response) {
                 var songList = response;
