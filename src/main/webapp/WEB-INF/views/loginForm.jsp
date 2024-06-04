@@ -22,7 +22,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding: 118px 0 166px 0;
+        padding: 100px 0 50px 0;
         box-sizing: border-box;
     }
      .content {
@@ -78,6 +78,11 @@
         box-sizing: border-box;
         margin: 0 auto;
     }
+    .logo {
+        width:100%;
+        height:100%;
+        object-fit:cover;
+    }
 </style>
 
 <div class="container-1">
@@ -85,7 +90,7 @@
         곡 추천 시스템
     </div>
     <div class="container">
-        <img src="${pageContext.request.contextPath}/images/image_1.png" alt="spotifyLogo">
+        <img src="${pageContext.request.contextPath}/images/image_1.png" alt="spotifyLogo" class="logo">
     </div>
     </div>
     <div class="content">

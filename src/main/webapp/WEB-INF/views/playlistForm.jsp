@@ -69,6 +69,24 @@
         height: 232px;
         box-sizing: border-box;
     }
+    .grid .image-3 {
+        border-radius: 8px;
+        background: url('../assets/images/image.jpeg') 50% / cover no-repeat, linear-gradient(#FFEE93, #FFEE93);
+        margin-bottom: 12px;
+        padding: 16px 16px 0 16px;
+        width: fit-content;
+        height: 232px;
+        box-sizing: border-box;
+    }
+    .grid .image-4 {
+        border-radius: 8px;
+        background: url('../assets/images/image_3.jpeg') 50% / cover no-repeat, linear-gradient(#FFC1C1, #FFC1C1);
+        margin-bottom: 12px;
+        padding: 16px 16px 0 16px;
+        width: fit-content;
+        height: 232px;
+        box-sizing: border-box;
+    }
     .grid .title {
         margin: 32px 0 0 0;
         display: flex;
@@ -85,15 +103,21 @@
     }
     .grid .graphic {
         border-radius: 48px;
-        background: url('../assets/images/graphic.jpeg') 50% / cover no-repeat, linear-gradient(#B5DBFF, #B5DBFF);
+        background-image: url("/images/avatar.jpg");
         width: 100px;
         height: 100px;
+    }
+    .profile-image{
+        width:100%;
+        height:100%;
+        object-fit:cover;
     }
     .grid .copy-4 {
         margin: 0 43.1px 67px 43.1px;
         display: flex;
         align-self: flex-end;
         box-sizing: border-box;
+        width: 28px;
     }
     .grid .id {
         overflow-wrap: break-word;
@@ -111,24 +135,6 @@
         justify-content: space-between;
         padding: 14px 8px 0 16px;
         width: 232px;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .image-3 {
-        border-radius: 8px;
-        background: url('../assets/images/image.jpeg') 50% / cover no-repeat, linear-gradient(#FFEE93, #FFEE93);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .image-4 {
-        border-radius: 8px;
-        background: url('../assets/images/image_3.jpeg') 50% / cover no-repeat, linear-gradient(#FFC1C1, #FFC1C1);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
         height: 232px;
         box-sizing: border-box;
     }
@@ -210,15 +216,15 @@
     <div class="container">
         <div class="title">
       <span class="hello-id">
-        Hello ID
+        Home
       </span>
         </div>
         <div class="graphic" onclick="goToProfile()">
+            <img src="/images/avatar.jpg" class="profile-image">
         </div>
     </div>
     <div class="copy-4">
-    <span class="id">
-      ID
+    <span class="id"> Profile
     </span>
     </div>
     <div class="large-grid">
@@ -275,13 +281,13 @@
                         let id = product["id"];
                         cdNum = $(".card").eq(i);
                         cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
-                            + id + '" onclick=goToPlaylist(id)>' + '<div class="playlistNumber">'
-                            + product["title"] + (i+1) + '</div> <button class="deleteButton" onclick="event.stopPropagation(); deletePlaylist(id)"> - </button> </div> <div class="copy"> <span class="playlistText">'
-                            + product["title"] + (i+1) + '</span> <span class="container">#' + product["category"] + '</span> </div>');
+                            + id + '" onclick="goToPlaylist(id)">' + '<div class="playlistNumber">'
+                            + product["title"] + ' ' + (i+1) + '</div> <button class="deleteButton" onclick="deletePlaylist(\'' + id + '\'); event.stopPropagation()"> - </button> </div> <div class="copy"> <span class="playlistText">'
+                            + product["title"] + ' ' + (i+1) + '</span> <span class="container">#' + product["category"] + '</span> </div>');
                         i++;
                     }
                 });
-                if (i < 7) {
+                if (i < 8) {
                     cdNum = $(".card").eq(i);
                     cdNum.append('<button class="addButton" id = "addButton"> + </button>');
                 }
@@ -296,7 +302,7 @@
         if (confirm("정말로 삭제하시겠습니까?")){
             console.log("Deleting playlist with ID: " + id);  // ID 값이 제대로 전달되는지 확인
             window.location.href = "/user/playlist/delete/" + id;
-            refreshPlaylist();
+            //refreshPlaylist();
         }
     }
 
