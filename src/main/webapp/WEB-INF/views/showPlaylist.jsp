@@ -187,27 +187,62 @@
 <html>
 <head>
     <title>Playlist</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .song-card, .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 10px 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header-row {
+            background-color: #eee;
+            font-weight: bold;
+        }
+        .song-card h3, .song-card p, .header-row div {
+            margin: 0;
+        }
+        .song-card p, .header-row div {
+            color: #555;
+        }
+        .song-card .song-info, .header-row div.song-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .song-card .song-date, .header-row div.song-date {
+            color: #888;
+        }
+    </style>
 </head>
 <body>
-
-<div id="songListContainer">
-    <%-- 플레이리스트에 포함된 노래 목록을 출력하는 영역 --%>
-    <table>
-        <thead>
-        <tr>
-            <th>Title</th>
-            <th>Artist</th>
-            <th>Time</th>
-            <th>Date</th>
-        </tr>
-        </thead>
-        <tbody>
-       <div id="songsArea"></div>
-        </tbody>
-    </table>
+<div class="container">
+    <h1>Playlist</h1>
+    <div class="header-row">
+        <div class="song-info">
+            <div>Title</div>
+            <div>Artist</div>
+        </div>
+        <div class="song-date">Date</div>
+    </div>
+    <div id="songsArea"></div>
 </div>
 
-</body>
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -224,11 +259,14 @@
                 console.log(songList);
                 $('#songsArea').empty();
                 // Loop through the product list and generate HTML for each product card
-                songList.forEach(function(product) {
-                    var songCardHtml = '<div id="' + product["id"] + '" >';
-                    songCardHtml += '<div><p>' + product["title"] + '</p></div>';
+                songList.forEach(function(song) {
+                    var songCardHtml = '<div id="' + song["id"] + '" class="song-card">';
+                    songCardHtml += '<div class="song-info">';
+                    songCardHtml += '<h3>' + song["title"] + '</h3>';
+                    songCardHtml += '<p>' + song["artist"] + '</p>';
                     songCardHtml += '</div>';
-
+                    songCardHtml += '<div class="song-date">' + song["date"] + '</div>';
+                    songCardHtml += '</div>';
                     $('#songsArea').append(songCardHtml);
                 });
             },
