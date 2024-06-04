@@ -68,6 +68,15 @@ public class PlaylistController {
         return "showPlaylist";
     }
 
+    @GetMapping("/getSongs")
+    public @ResponseBody List<SongDTO> getSongs(@RequestParam Long id, Model model) {
+        List<SongDTO> songList = songService.getSongList(id);
+
+        model.addAttribute("songList", songList);
+
+        return songList;
+    }
+
     //카테고리 추가 페이지
     @GetMapping("/playlist")
     public String addplaylistForm() {

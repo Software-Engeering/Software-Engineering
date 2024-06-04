@@ -202,17 +202,43 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${songList}" var="song">
-            <tr>
-                <td>${song.title}</td>
-                <td>${song.artist}</td>
-                <td>${song.time}</td>
-                <td>${song.date}</td>
-            </tr>
-        </c:forEach>
+       <div id="songsArea"></div>
         </tbody>
     </table>
 </div>
 
 </body>
 </html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $.ajax({
+            type: "GET",
+            url: "/user/getSongs",
+            data: {/* Any additional parameters you want to send */
+                id : 6
+            },
+            success: function(response) {
+                var songList = response;
+                console.log(songList);
+                $('#songsArea').empty();
+                // Loop through the product list and generate HTML for each product card
+                songList.forEach(function(product) {
+                    var songCardHtml = '<div id="' + product["id"] + '" >';
+                    songCardHtml += '<div><p>' + product["title"] + '</p></div>';
+                    songCardHtml += '</div>';
+
+                    $('#songsArea').append(songCardHtml);
+                });
+            },
+            error: function(xhr, status, error) {
+                console.error("ajax 호출 error 발생");
+            }
+        });
+    });
+
+
+
+</script>
+
