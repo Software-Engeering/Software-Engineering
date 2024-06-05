@@ -42,51 +42,6 @@
         width: 232px;
         box-sizing: border-box;
     }
-    .grid .image {
-        border-radius: 8px;
-        background: url('../assets/images/image.jpeg') 50% / cover no-repeat, linear-gradient(#FFEE93, #FFEE93);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .image-1 {
-        border-radius: 8px;
-        background: url('../assets/images/image_3.jpeg') 50% / cover no-repeat, linear-gradient(#FFC1C1, #FFC1C1);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .image-2 {
-        border-radius: 8px;
-        background: url('../assets/images/image_2.jpeg') 50%  / cover no-repeat, linear-gradient(#F5F5F5, #F5F5F5);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .image-3 {
-        border-radius: 8px;
-        background: url('../assets/images/image.jpeg') 50% / cover no-repeat, linear-gradient(#FFEE93, #FFEE93);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
-        height: 232px;
-        box-sizing: border-box;
-    }
-    .grid .image-4 {
-        border-radius: 8px;
-        background: url('../assets/images/image_3.jpeg') 50% / cover no-repeat, linear-gradient(#FFC1C1, #FFC1C1);
-        margin-bottom: 12px;
-        padding: 16px 16px 0 16px;
-        width: fit-content;
-        height: 232px;
-        box-sizing: border-box;
-    }
     .grid .title {
         margin: 32px 0 0 0;
         display: flex;
@@ -103,11 +58,10 @@
     }
     .grid .graphic {
         border-radius: 48px;
-        background-image: url("/images/avatar.jpg");
         width: 100px;
         height: 100px;
     }
-    .profile-image{
+    .images{
         width:100%;
         height:100%;
         object-fit:cover;
@@ -208,7 +162,7 @@
         font-size: 32px;
         letter-spacing: -1.3px;
         line-height: 1;
-        color: #FFFFFF;
+        color: purple;
     }
 </style>
 
@@ -220,7 +174,7 @@
       </span>
         </div>
         <div class="graphic" onclick="goToProfile()">
-            <img src="/images/avatar.jpg" class="profile-image">
+            <img src="/images/avatar.jpg" class="images">
         </div>
     </div>
     <div class="copy-4">
@@ -276,11 +230,32 @@
             success: function (response) {
                 let i = 0;
                 let playList = response;
+                let imageUrl;
                 playList.forEach(function(product) {
                     if (i < 8) {
+                        switch(product["category"]) {
+                            case "drive":
+                                imageUrl = '"background-image: url(/images/drivingImage.jpg); background-size: cover"'
+                                break;
+                            case "fun":
+                                imageUrl = '"background-image: url(/images/funImage.jpg); background-size: cover"'
+                                break;
+                            case "rain":
+                                imageUrl = '"background-image: url(/images/rainingImage.jpg); background-size: cover"'
+                                break;
+                            case "midnight":
+                                imageUrl = '"background-image: url(/images/midnightImage.jpg); background-size: cover"'
+                                break;
+                            case "exercise":
+                                imageUrl = '"background-image: url(/images/runningImage.jpg); background-size: cover"'
+                                break;
+                            case "study":
+                                imageUrl = '"background-image: url(/images/studyingImage.jpg); background-size: cover"'
+                                break;
+                        }
                         let id = product["id"];
                         cdNum = $(".card").eq(i);
-                        cdNum.append('<div class="playlistGraphic" style="background-color: #B5FFDB" id="'
+                        cdNum.append('<div class="playlistGraphic" style= ' + imageUrl +' id="'
                             + id + '" onclick="goToPlaylist(id)">' + '<div class="playlistNumber">'
                             + product["title"] + ' ' + (i+1) + '</div> <button class="deleteButton" onclick="deletePlaylist(\'' + id + '\'); event.stopPropagation()"> - </button> </div> <div class="copy"> <span class="playlistText">'
                             + product["title"] + ' ' + (i+1) + '</span> <span class="container">#' + product["category"] + '</span> </div>');
