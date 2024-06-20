@@ -2,6 +2,8 @@ package software.softwareEngineering.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,12 +12,14 @@ import software.softwareEngineering.entitiy.Playlist;
 import software.softwareEngineering.entitiy.Song;
 import software.softwareEngineering.entitiy.User;
 import software.softwareEngineering.repository.PlaylistRepository;
+import software.softwareEngineering.repository.UserRepository;
 
 @Service
 @RequiredArgsConstructor
 public class PlaylistService {
 
     private final PlaylistRepository playlistRepository;
+    private final UserRepository userRepository;
 
     public List<PlaylistDTO> getPlaylists(List<Playlist> playlists) {
         List<PlaylistDTO> playlistDTOs = new ArrayList<>();
@@ -59,5 +63,11 @@ public class PlaylistService {
         Playlist playlist = playlistRepository.findById(id).get();
 
         return playlist;
+    }
+
+    public List<Map<String,Object>> getCategoriesByUserId(Long id) {
+        System.out.println(id);
+        List<Map<String,Object>> resultList = playlistRepository.getCategoriesByUserId(id);
+        return resultList;
     }
 }
