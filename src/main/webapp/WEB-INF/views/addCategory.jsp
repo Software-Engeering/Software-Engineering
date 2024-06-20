@@ -57,7 +57,7 @@
 </body>
 </html>
 
-
+--%>
 
 
 <style>
@@ -143,7 +143,7 @@
     flex-direction: row;
     width: 262px;
     box-sizing: border-box;
-}</style>--%>
+}</style>
 
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <!DOCTYPE html>
