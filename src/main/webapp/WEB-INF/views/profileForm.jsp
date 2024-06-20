@@ -58,7 +58,7 @@
         <c:forEach var="artist" items="${favoriteList}">
             <div class="artist">
                 <div class="artist-name">${artist.artist_name}</div>
-                <div class="artist-count">Plays: ${artist.num}</div>
+                <div class="artist-count">Songs: ${artist.num}</div>
             </div>
         </c:forEach>
     </div>
