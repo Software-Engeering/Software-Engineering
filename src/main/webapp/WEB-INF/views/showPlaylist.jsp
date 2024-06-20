@@ -1,186 +1,3 @@
-<%--
-<%@ page contentType="text/html; charset=UTF-8" language="java" %>
-<!DOCTYPE html>
-<html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>플레이 리스트 선택시 나오는 상세 리스트</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-</head>
-<body>
-<div class="outside">
-    <div class="container">
-        <p class ="mainName">playlist_1</p>&lt;%&ndash; 플레이 리스트 이름 &ndash;%&gt;
-
-        <div>&lt;%&ndash; 트랙 개수 &ndash;%&gt;
-            <p class ="track">트랙 <span id="listCount">0</span>개</p>
-        </div>
-
-        <div class="header">&lt;%&ndash; 노래 재목,넘버링,등 &ndash;%&gt;
-        <span class="number">
-           Number
-        </span>
-            <span class="title">
-          Title
-        </span>
-            <span class="container-42">
-          가수
-        </span>
-            <span class="container-41">
-          재생시간
-        </span>
-            <span class="date">
-          Date
-        </span>
-        </div>
-
-        <ol class="list">&lt;%&ndash; 플레이 리스트 &ndash;%&gt;
-        </ol>
-
-    <div class="evaluation"> &lt;%&ndash; 만족도 평가 &ndash;%&gt;
-         <button class="good">
-         </button>
-
-         <button class="bad">
-         </button>
-     </div>
-    </div>
-</div>
-</body>
-</html>
-
-<style>
-    .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    .mainName {
-    margin-bottom: 24px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 600;
-    font-size: 42px;
-    letter-spacing: -0.4px;
-    line-height: 1.4;
-    color: #000000;
-    }
-    .track {
-    margin-bottom: 30px;
-    display: inline-block;
-    align-self: flex-start;
-    overflow-wrap: break-word;
-    font-family: 'Inter';
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 1.4;
-    color: #000000;
-
-    }
-        .header {
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-self: flex-start;
-            width: 879.4px;
-            box-sizing: border-box;
-        }
-    .outside {
-    background: #000000;
-    position: relative;
-    padding: 60px 16px 89px 16px;
-    width: 1473px;
-    height: fit-content;
-    box-sizing: border-box;
-    }
-        .bad {
-            background: #FFFFFF;
-            width: 101px;
-            height: 93px;
-        }
-        .good {
-            background: 50% / cover no-repeat;
-            width: 102px;
-            height: 93px;
-        }
-        .evaluation {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-self: center;
-            width: 347px;
-            box-sizing: border-box;
-
-            margin-top: 30px;
-        }
-        .list{
-            height: 420px;
-            overflow-y: auto;
-            border: 1px solid #ccc; /* 테두리 추가 */
-            padding: 0; /* 기본 패딩 제거 */
-            margin: 0; /* 기본 마진 제거 */
-        }
-        .list li {
-            margin-bottom: 10px; /* 원하는 간격(px)으로 조절 가능 */
-            font-size: 23px;
-        }
-}</style>
-
-<script type="text/javascript">
-    //리스트 요소 개수
-    var count=0;
-
-    //시작시 리스트10개 추가
-    $(document).ready(function() {
-
-        for(count=0;count<10;count++)
-        {
-            $('.list').append('<li>'+count+" <button class='removeButton'>Remove</button>"+'</li>');
-
-        }
-        updateListCount();
-    });
-    //만족도 좋다고 평가
-    $('.good').click(function() {
-        for(var i=0;i<10;i++,count++)
-        {
-            $('.list').append('<li>'+count+" <button class='removeButton'>Remove</button>"+'</li>');
-
-        }
-        updateListCount();
-    });
-
-    //노래 제거버튼
-    $(document).on("click", ".removeButton", function() {
-        $(this).parent().remove();
-        updateListCount();
-    });
-
-    //현재 리스트 개수 확인
-    function updateListCount() {
-        var itemCount = $(".list li").length;
-        var countText =  + itemCount;
-        $("#listCount").text(countText);
-    }
-
-    //만족도 불만 클릭
-    $('.bad').click(function() {
-        $(".list").empty();
-        count=0;
-        for(count;count<10;count++)
-        {
-            $('.list').append('<li>'+count+"새로운 노래"+" <button class='removeButton'>Remove</button>"+'</li>');
-
-        }
-        updateListCount();
-    });
-
-
-</script>--%>
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -199,6 +16,37 @@
             width: 80%;
             margin: 0 auto;
             padding: 20px;
+            display: flex;
+            flex-direction: row;
+        }
+        .player-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .youtube-player {
+            width: 100%;
+            max-width: 640px;
+            height: 360px;
+            margin-bottom: 20px;
+        }
+        .controls {
+            display: flex;
+            gap: 10px;
+        }
+        .controls button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .controls button img {
+            width: 30px;
+            height: 30px;
+        }
+        .playlist-container {
+            flex: 1;
+            margin-left: 20px;
         }
         .song-card, .header-row {
             display: flex;
@@ -232,51 +80,147 @@
 </head>
 <body>
 <div class="container">
-    <h1>Playlist</h1>
-    <div class="header-row">
-        <div class="song-info">
-            <div>Title</div>
-            <div>Artist</div>
+    <div class="player-container">
+        <div id="youtube-video" class="youtube-player"></div>
+        <div class="controls">
+            <button id="prev-button"><img src="prev-icon.png" alt="Previous"></button>
+            <button id="play-button"><img src="play-icon.png" alt="Play"></button>
+            <button id="pause-button"><img src="pause-icon.png" alt="Pause"></button>
+            <button id="next-button"><img src="next-icon.png" alt="Next"></button>
         </div>
-        <div class="song-date">Date</div>
     </div>
-    <div id="songsArea"></div>
+    <div class="playlist-container">
+        <div id="songsArea"></div>
+    </div>
 </div>
 
-</html>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
     $(document).ready(function() {
+        var songList = [];  // 전역 변수로 songList 선언
+        var currentIndex = -1;  // 현재 재생 중인 곡의 인덱스
+
         $.ajax({
             type: "GET",
             url: "/user/getSongs",
-            data: {/* Any additional parameters you want to send */
-                id : ${id}
-            },
+            data: { id: ${id} },  // Any additional parameters you want to send
             success: function(response) {
-                var songList = response;
+                songList = response;
                 console.log(songList);
                 $('#songsArea').empty();
                 // Loop through the product list and generate HTML for each product card
                 songList.forEach(function(song) {
                     var songCardHtml = '<div id="' + song["id"] + '" class="song-card">';
                     songCardHtml += '<div class="song-info">';
-                    songCardHtml += '<h3>' + song["title"] + '</h3>';
-                    songCardHtml += '<p>' + song["artist"] + '</p>';
+                    songCardHtml += '<h3 class="song-title">' + song["title"] + '</h3>';
+                    songCardHtml += '<p class="song-artist">' + song["artist"] + '</p>';
                     songCardHtml += '</div>';
                     songCardHtml += '<div class="song-date">' + song["date"] + '</div>';
                     songCardHtml += '</div>';
                     $('#songsArea').append(songCardHtml);
                 });
+
+                // 첫 번째 곡을 자동으로 로드하고 재생
+                if (songList.length > 0) {
+                    loadAndPlaySong(0);
+                }
             },
             error: function(xhr, status, error) {
                 console.error("ajax 호출 error 발생");
             }
         });
+
+        var player;
+
+        function loadAndPlaySong(index) {
+            if (index < 0 || index >= songList.length) {
+                return;  // 인덱스가 범위를 벗어나면 아무 것도 하지 않음
+            }
+
+            var song = songList[index];
+            var title = song.title;
+            var artist = song.artist;
+            var keyword = title + " " + artist;
+            var apiKey = 'AIzaSyClBGCTWjdiAwG8Kwf--O_julSFSQ_bxRo';
+            var apiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + encodeURIComponent(keyword) + '&key=' + apiKey;
+
+            // YouTube Data API 호출
+            $.get(apiUrl, function(data) {
+                var videoId = data.items[0].id.videoId;
+
+                if (player) {
+                    player.loadVideoById(videoId);
+                } else {
+                    player = new YT.Player('youtube-video', {
+                        height: '360',
+                        width: '640',
+                        videoId: videoId,
+                        playerVars: {
+                            'fs': 0,  // 전체화면 버튼 비활성화
+                            'rel': 0, // 관련 동영상 표시 안 함
+                            'modestbranding': 1 // 최소 브랜딩
+                        },
+                        events: {
+                            'onReady': onPlayerReady,
+                            'onStateChange': onPlayerStateChange
+                        }
+                    });
+                }
+            });
+
+            currentIndex = index;
+        }
+
+        $('#songsArea').on('click', '.song-card', function() {
+            var index = $(this).index();
+            loadAndPlaySong(index);
+        });
+
+        $('#play-button').on('click', function() {
+            if (player) {
+                player.playVideo();
+            }
+        });
+
+        $('#pause-button').on('click', function() {
+            if (player) {
+                player.pauseVideo();
+            }
+        });
+
+        $('#prev-button').on('click', function() {
+            if (currentIndex > 0) {
+                loadAndPlaySong(currentIndex - 1);
+            }
+        });
+
+        $('#next-button').on('click', function() {
+            if (currentIndex < songList.length - 1) {
+                loadAndPlaySong(currentIndex + 1);
+            }
+        });
+
+        // IFrame Player API를 비동기로 로드 (최초 1회만)
+        if (!window.YT) {
+            var tag = document.createElement('script');
+            tag.src = "https://www.youtube.com/iframe_api";
+            var firstScriptTag = document.getElementsByTagName('script')[0];
+            firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+        }
+
+        // 플레이어가 준비되었을 때 호출되는 함수
+        function onPlayerReady(event) {
+            // 플레이어가 준비되었을 때 추가적인 설정이 필요하면 여기에 추가
+        }
+
+        // 플레이어 상태 변경 시 호출되는 함수
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.ENDED) {
+                if (currentIndex < songList.length - 1) {
+                    loadAndPlaySong(currentIndex + 1);
+                }
+            }
+        }
     });
-
-
-
 </script>
-
+</body>
+</html>
