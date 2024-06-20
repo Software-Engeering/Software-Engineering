@@ -17,13 +17,24 @@
             margin: 0 auto;
             padding: 20px;
             display: flex;
+            flex-direction: column;
+        }
+        .title {
+            width: 100%;
+            text-align: left; /* 왼쪽 정렬 */
+            margin-bottom: 20px;
+        }
+        .content {
+            display: flex;
             flex-direction: row;
+            align-items: center; /* 수직 가운데 정렬 */
         }
         .player-container {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center; /* 수직 가운데 정렬 */
         }
         .youtube-player {
             width: 100%;
@@ -33,7 +44,7 @@
         }
         .controls {
             display: flex;
-            gap: 10px;
+            gap: 20px; /* 간격을 20px로 변경 */
         }
         .controls button {
             background: none;
@@ -41,8 +52,8 @@
             cursor: pointer;
         }
         .controls button img {
-            width: 30px;
-            height: 30px;
+            width: 50px; /* 버튼 이미지 크기 증가 */
+            height: 50px; /* 버튼 이미지 크기 증가 */
         }
         .playlist-container {
             flex: 1;
@@ -80,17 +91,19 @@
 </head>
 <body>
 <div class="container">
-    <div class="player-container">
-        <div id="youtube-video" class="youtube-player"></div>
-        <div class="controls">
-            <button id="prev-button"><img src="prev-icon.png" alt="Previous"></button>
-            <button id="play-button"><img src="play-icon.png" alt="Play"></button>
-            <button id="pause-button"><img src="pause-icon.png" alt="Pause"></button>
-            <button id="next-button"><img src="next-icon.png" alt="Next"></button>
+    <h1 class="title">Playlist</h1>
+    <div class="content">
+        <div class="player-container">
+            <div id="youtube-video" class="youtube-player"></div>
+            <div class="controls">
+                <button id="prev-button"><img src="${pageContext.request.contextPath}/images/prev-icon.png" alt="Previous"></button>
+                <button id="play-pause-button"><img src="${pageContext.request.contextPath}/images/play-icon.png" alt="Play" id="play-pause-img"></button>
+                <button id="next-button"><img src="${pageContext.request.contextPath}/images/next-icon.png" alt="Next"></button>
+            </div>
         </div>
-    </div>
-    <div class="playlist-container">
-        <div id="songsArea"></div>
+        <div class="playlist-container">
+            <div id="songsArea"></div>
+        </div>
     </div>
 </div>
 
@@ -98,6 +111,7 @@
     $(document).ready(function() {
         var songList = [];  // 전역 변수로 songList 선언
         var currentIndex = -1;  // 현재 재생 중인 곡의 인덱스
+        var isPlaying = false;  // 현재 재생 상태를 나타내는 변수
 
         $.ajax({
             type: "GET",
@@ -175,15 +189,16 @@
             loadAndPlaySong(index);
         });
 
-        $('#play-button').on('click', function() {
+        $('#play-pause-button').on('click', function() {
             if (player) {
-                player.playVideo();
-            }
-        });
-
-        $('#pause-button').on('click', function() {
-            if (player) {
-                player.pauseVideo();
+                if (isPlaying) {
+                    player.pauseVideo();
+                    $('#play-pause-img').attr('src', '${pageContext.request.contextPath}/images/play-icon.png');
+                } else {
+                    player.playVideo();
+                    $('#play-pause-img').attr('src', '${pageContext.request.contextPath}/images/pause-icon.png');
+                }
+                isPlaying = !isPlaying;
             }
         });
 
@@ -218,6 +233,8 @@
                 if (currentIndex < songList.length - 1) {
                     loadAndPlaySong(currentIndex + 1);
                 }
+                $('#play-pause-img').attr('src', '${pageContext.request.contextPath}/images/play-icon.png');  // 재생이 끝나면 아이콘을 플레이로 변경
+                isPlaying = false;  // 재생 상태 변경
             }
         }
     });
