@@ -2,6 +2,8 @@ package software.softwareEngineering.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -71,5 +73,12 @@ public class SongService {
     @Transactional
     public void deleteSongsByPlaylistId(Long playlistId) {
         songRepository.deleteByPlaylistId(playlistId);
+    }
+
+    public List<Map<String,Object>> getAllSongs() {
+
+        List<Map<String,Object>> resultList = songRepository.getAllSongs();
+        //여기다 작업하면 될듯
+        return resultList;
     }
 }

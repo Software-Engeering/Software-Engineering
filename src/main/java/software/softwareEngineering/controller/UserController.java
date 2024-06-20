@@ -14,6 +14,7 @@ import software.softwareEngineering.entitiy.Playlist;
 import software.softwareEngineering.entitiy.User;
 import software.softwareEngineering.repository.UserRepository;
 import software.softwareEngineering.service.PlaylistService;
+import software.softwareEngineering.service.SongService;
 import software.softwareEngineering.service.UserService;
 
 import java.util.List;
@@ -25,6 +26,7 @@ import java.util.Map;
 public class UserController {
     private final PlaylistService playlistService;
     private final UserService userService;
+    private final SongService songService;
     // 프로필 편집 페이지
     @GetMapping("/profileForm")
     public String profileForm(Authentication authentication, Model model) {
@@ -34,6 +36,9 @@ public class UserController {
 
         List<Map<String,Object>> resultList = playlistService.getCategoriesByUserId(user.getId());
         List<Map<String,Object>> favoriteList = playlistService.getFavoriteArtistsByUserId(user.getId());
+
+        //임시
+        List<Map<String,Object>> songList = songService.getAllSongs();
 
         model.addAttribute("resultList", resultList);
         model.addAttribute("favoriteList", favoriteList);

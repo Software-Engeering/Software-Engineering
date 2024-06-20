@@ -1,6 +1,8 @@
 package software.softwareEngineering.repository;
 
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -8,6 +10,8 @@ import org.springframework.data.repository.query.Param;
 import software.softwareEngineering.entitiy.Song;
 
 public interface SongRepository extends JpaRepository<Song, Long> {
+    @Query(value = "SELECT * FROM song", nativeQuery = true)
+    List<Map<String,Object>> getAllSongs();
 
     @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getExercise(Pageable pageable);
