@@ -52,10 +52,55 @@
               </span>
         </p>
     </div>
+    <div class="favorite-artists">
+
+        <c:forEach var="artist" items="${favoriteList}">
+            <div class="artist">
+                <div class="artist-name">${artist.artist_name}</div>
+                <div class="artist-count">Plays: ${artist.num}</div>
+            </div>
+        </c:forEach>
+    </div>
 </body>
 </html>
 
-<style>.container {
+<style>
+    .favorite-artists {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* 카드 간격 */
+        padding: 20px;
+        justify-content: center; /* 중앙 정렬 */
+    }
+    .artist {
+        width: 150px; /* 카드 너비 */
+        height: 150px; /* 카드 높이 */
+        background-color: #f8f9fa;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .artist-name {
+        font-size: 1em; /* 글자 크기 */
+        color: #343a40;
+        margin-bottom: 5px; /* 글자와 하단 간격 */
+        overflow: hidden; /* 넘치는 글자 처리 */
+        text-overflow: ellipsis; /* 넘치는 글자 ...로 표시 */
+        white-space: nowrap; /* 한 줄로 표시 */
+    }
+    .artist-count {
+        font-size: 0.8em; /* 글자 크기 */
+        color: #6c757d;
+    }
+
+
+    .container {
     margin-left: 200px;
     margin-right: 200px;
     background: #FFFFFF;

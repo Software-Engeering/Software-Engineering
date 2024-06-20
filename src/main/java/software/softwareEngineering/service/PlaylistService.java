@@ -70,4 +70,10 @@ public class PlaylistService {
         List<Map<String,Object>> resultList = playlistRepository.getCategoriesByUserId(id);
         return resultList;
     }
+
+    public List<Map<String,Object>> getFavoriteArtistsByUserId(Long id) {
+        System.out.println(id);
+        List<Map<String,Object>> resultList = playlistRepository.getFavoriteArtistsByUserId(id);
+        return resultList;
+    }
 }

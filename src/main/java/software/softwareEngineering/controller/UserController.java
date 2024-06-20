@@ -33,8 +33,10 @@ public class UserController {
         User user = userService.find(userDTO);
 
         List<Map<String,Object>> resultList = playlistService.getCategoriesByUserId(user.getId());
+        List<Map<String,Object>> favoriteList = playlistService.getFavoriteArtistsByUserId(user.getId());
 
         model.addAttribute("resultList", resultList);
+        model.addAttribute("favoriteList", favoriteList);
         return "profileForm";
     }
 
