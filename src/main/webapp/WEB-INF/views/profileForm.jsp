@@ -23,8 +23,9 @@
                 <div class="input-and-button">
 
                     <input type="text" name="account" placeholder="Username" class="label" /><br/>
-                    <input type="password" name="password" placeholder="New Password" class="label-1"/><br/>
                     <input type="email" name="email" placeholder="Email" class="label-2"/><br/>
+                    <input type="password" name="password" placeholder="Current Password" class="label-1"/><br/>
+                    <input type="password" name="password" placeholder="New Password" class="label-1"/><br/>
 
                     <button class="button" type="submit">
                         <span class="container-2">Save changes</span>
