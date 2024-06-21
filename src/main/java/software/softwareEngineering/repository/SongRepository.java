@@ -11,7 +11,7 @@ import software.softwareEngineering.entitiy.Song;
 
 public interface SongRepository extends JpaRepository<Song, Long> {
     @Query(value = "SELECT * FROM song", nativeQuery = true)
-    List<Map<String,Object>> getAllSongs();
+    List<Song> getAllSongs();
 
     @Query("select s from Song s where s.mode = 'Major' and s.playlist.id is null")
     List<Song> getExercise(Pageable pageable);

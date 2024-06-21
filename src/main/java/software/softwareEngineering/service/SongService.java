@@ -1,8 +1,6 @@
 package software.softwareEngineering.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
@@ -21,11 +19,14 @@ public class SongService {
 
     private final SongRepository songRepository;
     private final PlaylistRepository playlistRepository;
+    public List<Song> playlistSongs;
+    private Long playlistID;
 
     public List<Song> makeSongList(String category) {
 
         List<Song> songList = new ArrayList<>();
         Pageable pageable = PageRequest.of(0, 10);
+        List<Song> songList2 = prefSongs();
 
         switch (category) {
             case "exercise":
@@ -53,6 +54,8 @@ public class SongService {
     public List<SongDTO> getSongList(Long id) {
         Playlist playlist = playlistRepository.findById(id).get();
         List<Song> songs = playlist.getSongs();
+        playlistID = id;
+        playlistSongs = songs;
 
         List<SongDTO> songDTOList = new ArrayList<>();
 
@@ -75,10 +78,51 @@ public class SongService {
         songRepository.deleteByPlaylistId(playlistId);
     }
 
-    public List<Map<String,Object>> getAllSongs() {
+    public List<Song> prefSongs(){
+        Playlist playlist = playlistRepository.findById(playlistID).get();
+        Long danceability = playlist.getDanceability();
+        Long valence = playlist.getValence();
+        Long energy = playlist.getEnergy();
+        Long acousticness = playlist.getAcousticness();
+        Long instrumentainess = playlist.getInstrumentainess();
+        Long liveness = playlist.getLiveness();
+        Long speechiness = playlist.getSpeechiness();
 
-        List<Map<String,Object>> resultList = songRepository.getAllSongs();
-        //여기다 작업하면 될듯
+        List<Song> allSongs = songRepository.getAllSongs();
+        List<Song> resultList = new ArrayList<>();
+        HashMap<Long, Song> map = new HashMap<>();
+        List<Song> songs = playlist.getSongs();
+        List<Long> sims = new ArrayList<>();
+
+        for (Song s: allSongs){
+            Long sim = 0L;
+            sim += Math.abs(danceability - Long.valueOf(s.getDanceability()));
+            sim += Math.abs(valence - Long.valueOf(s.getValence()));
+            sim += Math.abs(energy - Long.valueOf(s.getEnergy()));
+            sim += Math.abs(acousticness - Long.valueOf(s.getAcousticness()));
+            sim += Math.abs(instrumentainess - Long.valueOf(s.getInstrumentainess()));
+            sim += Math.abs(liveness - Long.valueOf(s.getLiveness()));
+            sim += Math.abs(speechiness - Long.valueOf(s.getSpeechiness()));
+            Collections.sort(sims);
+
+            if (resultList.size() < 10){
+                map.put(sim, s);
+                sims.add(sim);
+            }
+            else if (sim < sims.get(9)){
+                map.remove(sims.get(9));
+                map.put(sim, s);
+            }
+        }
+
+        for (Song s : resultList){
+            songs.add(s);
+        }
+
         return resultList;
     }
+
+//    public void getAllSongs() {
+//        List<Map<String,Object>> resultList = songRepository.getAllSongs();
+//    }
 }
