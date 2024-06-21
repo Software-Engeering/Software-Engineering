@@ -21,20 +21,20 @@
         }
         .title {
             width: 100%;
-            text-align: left; /* 왼쪽 정렬 */
+            text-align: left;
             margin-bottom: 20px;
         }
         .content {
             display: flex;
             flex-direction: row;
-            align-items: center; /* 수직 가운데 정렬 */
+            align-items: center;
         }
         .player-container {
             flex: 1;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center; /* 수직 가운데 정렬 */
+            justify-content: center;
         }
         .youtube-player {
             width: 100%;
@@ -44,7 +44,7 @@
         }
         .controls {
             display: flex;
-            gap: 20px; /* 간격을 20px로 변경 */
+            gap: 20px;
         }
         .controls button {
             background: none;
@@ -52,8 +52,31 @@
             cursor: pointer;
         }
         .controls button img {
-            width: 50px; /* 버튼 이미지 크기 증가 */
-            height: 50px; /* 버튼 이미지 크기 증가 */
+            width: 50px;
+            height: 50px;
+        }
+        .like-dislike-container {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #eee;
+            border-radius: 5px;
+            align-items: center;
+        }
+        .like-dislike-container button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .like-dislike-container button img {
+            width: 50px;
+            height: 50px;
+        }
+        .like-dislike-text {
+            font-size: 18px;
+            color: #333;
+            margin-left: 20px;
         }
         .playlist-container {
             flex: 1;
@@ -100,12 +123,19 @@
                 <button id="play-pause-button"><img src="${pageContext.request.contextPath}/images/play-icon.png" alt="Play" id="play-pause-img"></button>
                 <button id="next-button"><img src="${pageContext.request.contextPath}/images/next-icon.png" alt="Next"></button>
             </div>
+            <div class="like-dislike-container">
+                <button id="like-button"><img src="${pageContext.request.contextPath}/images/like.png" alt="Like"></button>
+                <button id="dislike-button"><img src="${pageContext.request.contextPath}/images/dislike.png" alt="Dislike"></button>
+
+            </div>
         </div>
         <div class="playlist-container">
             <div id="songsArea"></div>
         </div>
     </div>
 </div>
+
+
 
 <script>
     $(document).ready(function() {
@@ -154,7 +184,8 @@
             var title = song.title;
             var artist = song.artist;
             var keyword = title + " " + artist;
-            var apiKey = 'AIzaSyClBGCTWjdiAwG8Kwf--O_julSFSQ_bxRo';
+            // var apiKey = 'AIzaSyClBGCTWjdiAwG8Kwf--O_julSFSQ_bxRo';
+            var apiKey = 'AIzaSyCqb0nNDIxDGNG0GrA5kzcxF4zVYdKumH8';
             var apiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + encodeURIComponent(keyword) + '&key=' + apiKey;
 
             // YouTube Data API 호출
