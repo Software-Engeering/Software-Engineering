@@ -26,7 +26,6 @@ public class SongService {
 
         List<Song> songList = new ArrayList<>();
         Pageable pageable = PageRequest.of(0, 10);
-        List<Song> songList2 = prefSongs();
 
         switch (category) {
             case "exercise":
@@ -54,6 +53,7 @@ public class SongService {
     public List<SongDTO> getSongList(Long id) {
         Playlist playlist = playlistRepository.findById(id).get();
         List<Song> songs = playlist.getSongs();
+        prefSongs(id);
         playlistID = id;
         playlistSongs = songs;
 
@@ -78,8 +78,8 @@ public class SongService {
         songRepository.deleteByPlaylistId(playlistId);
     }
 
-    public List<Song> prefSongs(){
-        Playlist playlist = playlistRepository.findById(playlistID).get();
+    public void prefSongs(Long id){
+        Playlist playlist = playlistRepository.findById(id).get();
         Long danceability = playlist.getDanceability();
         Long valence = playlist.getValence();
         Long energy = playlist.getEnergy();
@@ -89,40 +89,39 @@ public class SongService {
         Long speechiness = playlist.getSpeechiness();
 
         List<Song> allSongs = songRepository.getAllSongs();
-        List<Song> resultList = new ArrayList<>();
         HashMap<Long, Song> map = new HashMap<>();
         List<Song> songs = playlist.getSongs();
         List<Long> sims = new ArrayList<>();
 
         for (Song s: allSongs){
-            Long sim = 0L;
-            sim += Math.abs(danceability - Long.valueOf(s.getDanceability()));
-            sim += Math.abs(valence - Long.valueOf(s.getValence()));
-            sim += Math.abs(energy - Long.valueOf(s.getEnergy()));
-            sim += Math.abs(acousticness - Long.valueOf(s.getAcousticness()));
-            sim += Math.abs(instrumentainess - Long.valueOf(s.getInstrumentainess()));
-            sim += Math.abs(liveness - Long.valueOf(s.getLiveness()));
-            sim += Math.abs(speechiness - Long.valueOf(s.getSpeechiness()));
-            Collections.sort(sims);
+            if (s.getPlaylist() == null) {
+                Long sim = 0L;
+                sim += Math.abs(danceability - Long.valueOf(s.getDanceability()));
+                sim += Math.abs(valence - Long.valueOf(s.getValence()));
+                sim += Math.abs(energy - Long.valueOf(s.getEnergy()));
+                sim += Math.abs(acousticness - Long.valueOf(s.getAcousticness()));
+                sim += Math.abs(instrumentainess - Long.valueOf(s.getInstrumentainess()));
+                sim += Math.abs(liveness - Long.valueOf(s.getLiveness()));
+                sim += Math.abs(speechiness - Long.valueOf(s.getSpeechiness()));
+                Collections.sort(sims);
 
-            if (resultList.size() < 10){
-                map.put(sim, s);
-                sims.add(sim);
-            }
-            else if (sim < sims.get(9)){
-                map.remove(sims.get(9));
-                map.put(sim, s);
+                if (map.size() < 10) {
+                    map.put(sim, s);
+                    sims.add(sim);
+                } else if (sim < sims.get(9)) {
+                    map.remove(sims.get(9));
+                    sims.remove(9);
+                    sims.add(sim);
+                    map.put(sim, s);
+                }
             }
         }
-
-        for (Song s : resultList){
-            songs.add(s);
+        while ((sims.size() > 10) && (map.size() > 10)){
+            map.remove(sims.get(sims.size()-1));
+            sims.remove(sims.size()-1);
         }
-
-        return resultList;
+        for (Long key: map.keySet()){
+            songs.add(map.get(key));
+        }
     }
-
-//    public void getAllSongs() {
-//        List<Map<String,Object>> resultList = songRepository.getAllSongs();
-//    }
 }

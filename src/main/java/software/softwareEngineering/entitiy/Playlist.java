@@ -27,9 +27,6 @@ public class Playlist {
     private String category;
 
     //취향 정보
-    private Long bpm;
-    private String octave;
-    private String mode;
     private Long danceability;
     private Long valence;
     private Long energy;

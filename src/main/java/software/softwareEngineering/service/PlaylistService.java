@@ -38,9 +38,6 @@ public class PlaylistService {
     }
 
     public void makePlaylist(List<Song> songList, User user, String category) {
-        Long bpm;
-        String octave;
-        String mode;
         Long danceability = 0L;
         Long valence = 0L;
         Long energy = 0L;
@@ -51,58 +48,58 @@ public class PlaylistService {
 
         switch(category){
             case "exercise":
-                danceability = 0L;
-                valence = 0L;
-                energy = 0L;
-                acousticness = 0L;
-                instrumentainess = 0L;
-                liveness = 0L;
-                speechiness = 0L;
+                danceability = 50L;
+                valence = 30L;
+                energy = 80L;
+                acousticness = 5L;
+                instrumentainess = 5L;
+                liveness = 80L;
+                speechiness = 20L;
                 break;
             case "drive":
-                danceability = 0L;
-                valence = 0L;
-                energy = 0L;
+                danceability = 45L;
+                valence = 15L;
+                energy = 80L;
                 acousticness = 0L;
-                instrumentainess = 0L;
-                liveness = 0L;
-                speechiness = 0L;
+                instrumentainess = 6L;
+                liveness = 80L;
+                speechiness = 10L;
                 break;
             case "study":
-                danceability = 0L;
-                valence = 0L;
-                energy = 0L;
-                acousticness = 0L;
-                instrumentainess = 0L;
-                liveness = 0L;
-                speechiness = 0L;
+                danceability = 10L;
+                valence = 70L;
+                energy = 45L;
+                acousticness = 70L;
+                instrumentainess = 60L;
+                liveness = 30L;
+                speechiness = 10L;
                 break;
             case "fun":
-                danceability = 0L;
-                valence = 0L;
-                energy = 0L;
-                acousticness = 0L;
-                instrumentainess = 0L;
-                liveness = 0L;
-                speechiness = 0L;
+                danceability = 85L;
+                valence = 30L;
+                energy = 70L;
+                acousticness = 10L;
+                instrumentainess = 40L;
+                liveness = 70L;
+                speechiness = 80L;
                 break;
             case "midnight":
-                danceability = 0L;
-                valence = 0L;
-                energy = 0L;
-                acousticness = 0L;
-                instrumentainess = 0L;
-                liveness = 0L;
-                speechiness = 0L;
+                danceability = 10L;
+                valence = 70L;
+                energy = 15L;
+                acousticness = 70L;
+                instrumentainess = 60L;
+                liveness = 40L;
+                speechiness = 60L;
                 break;
             case "rain":
-                danceability = 0L;
-                valence = 0L;
-                energy = 0L;
-                acousticness = 0L;
-                instrumentainess = 0L;
-                liveness = 0L;
-                speechiness = 0L;
+                danceability = 15L;
+                valence = 65L;
+                energy = 45L;
+                acousticness = 55L;
+                instrumentainess = 50L;
+                liveness = 45L;
+                speechiness = 35L;
                 break;
         }
         Playlist playlist = Playlist.builder()
