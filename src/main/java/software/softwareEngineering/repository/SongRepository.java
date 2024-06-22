@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import software.softwareEngineering.entitiy.Song;
@@ -23,6 +24,7 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     @Query(value = "UPDATE seSpotify.pointing SET like_yn = :yn where playlist_id = :playlist_id and song_id = :song_id", nativeQuery = true)
     void updatePointingByPlaylistId(@Param("playlist_id") Long playlist_id, @Param("song_id") Long song_id, @Param("yn") String yn);
 
+    @Modifying
     @Query(value = "INSERT INTO seSpotify.pointing (playlist_id, song_id, like_yn) VALUES (:playlist_id, :song_id, :yn)", nativeQuery = true)
     void insertPointingByPlaylistId(@Param("playlist_id") Long playlist_id, @Param("song_id") Long song_id, @Param("yn") String yn);
 
