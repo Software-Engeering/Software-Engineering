@@ -27,13 +27,13 @@ public class Playlist {
     private String category;
 
     //취향 정보
-    private Long danceability;
-    private Long valence;
-    private Long energy;
-    private Long acousticness;
-    private Long instrumentainess;
-    private Long liveness;
-    private Long speechiness;
+    public Long danceability;
+    public Long valence;
+    public Long energy;
+    public Long acousticness;
+    public Long instrumentainess;
+    public Long liveness;
+    public Long speechiness;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

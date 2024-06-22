@@ -77,6 +77,18 @@ public class PlaylistController {
         return songList;
     }
 
+    @GetMapping("/addSongs")
+    public String addSong(@RequestParam Long id){
+        songService.updatePref(id);
+        return "addSong";
+    }
+
+    @GetMapping("/deleteSongs")
+    public String deleteSong(@RequestParam Long id){
+        songService.deleteSongs(id);
+        return "deleteSongs";
+    }
+
     //카테고리 추가 페이지
     @GetMapping("/playlist")
     public String addplaylistForm() {

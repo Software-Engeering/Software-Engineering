@@ -78,6 +78,46 @@ public class SongService {
         songRepository.deleteByPlaylistId(playlistId);
     }
 
+    public void updatePref(Long id){
+        Playlist playlist = playlistRepository.findById(id).get();
+        List<Song> songs = playlist.getSongs();
+        Long danceability = playlist.getDanceability();
+        Long valence = playlist.getValence();
+        Long energy = playlist.getEnergy();
+        Long acousticness = playlist.getAcousticness();
+        Long instrumentainess = playlist.getInstrumentainess();
+        Long liveness = playlist.getLiveness();
+        Long speechiness = playlist.getSpeechiness();
+
+        for (Song s : songs) {
+            danceability += Long.valueOf(s.getDanceability());
+            valence += Long.valueOf(s.getValence());
+            energy += Long.valueOf(s.getEnergy());
+            acousticness += Long.valueOf(s.getAcousticness());
+            instrumentainess += Long.valueOf(s.getInstrumentainess());
+            liveness += Long.valueOf(s.getLiveness());
+            speechiness += Long.valueOf(s.getSpeechiness());
+        }
+        playlist.acousticness = acousticness/(songs.size()+1);
+        playlist.instrumentainess = instrumentainess/(songs.size()+1);
+        playlist.liveness = liveness/(songs.size()+1);
+        playlist.speechiness = speechiness/(songs.size()+1);
+        playlist.energy = energy/(songs.size()+1);
+        playlist.valence = valence/(songs.size()+1);
+        playlist.danceability = danceability/(songs.size()+1);
+
+        prefSongs(id);
+    }
+
+    public void deleteSongs(Long id) {
+        Playlist playlist = playlistRepository.findById(id).get();
+        List<Song> songs = playlist.getSongs();
+        for (int i = 0; i < 10; i++) {
+            songs.remove(songs.size() - 1);
+        }
+        prefSongs(id);
+    }
+
     public void prefSongs(Long id){
         Playlist playlist = playlistRepository.findById(id).get();
         Long danceability = playlist.getDanceability();
