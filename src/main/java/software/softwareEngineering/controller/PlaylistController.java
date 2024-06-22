@@ -78,13 +78,13 @@ public class PlaylistController {
     }
 
     @GetMapping("/addSongs")
-    public String addSong(@RequestParam Long id){
+    public @ResponseBody String addSong(@RequestParam Long id){
         songService.updatePref(id);
         return "addSong";
     }
 
     @GetMapping("/deleteSongs")
-    public String deleteSong(@RequestParam Long id){
+    public @ResponseBody String deleteSong(@RequestParam Long id){
         songService.deleteSongs(id);
         return "deleteSongs";
     }

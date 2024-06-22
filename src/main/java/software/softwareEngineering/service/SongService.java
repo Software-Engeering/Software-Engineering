@@ -53,7 +53,6 @@ public class SongService {
     public List<SongDTO> getSongList(Long id) {
         Playlist playlist = playlistRepository.findById(id).get();
         List<Song> songs = playlist.getSongs();
-        prefSongs(id);
         playlistID = id;
         playlistSongs = songs;
 

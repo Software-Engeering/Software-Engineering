@@ -142,36 +142,39 @@
         var songList = [];  // 전역 변수로 songList 선언
         var currentIndex = -1;  // 현재 재생 중인 곡의 인덱스
         var isPlaying = false;  // 현재 재생 상태를 나타내는 변수
+        displaySongs();
 
-        $.ajax({
-            type: "GET",
-            url: "/user/getSongs",
-            data: { id: ${id} },  // Any additional parameters you want to send
-            success: function(response) {
-                songList = response;
-                console.log(songList);
-                $('#songsArea').empty();
-                // Loop through the product list and generate HTML for each product card
-                songList.forEach(function(song) {
-                    var songCardHtml = '<div id="' + song["id"] + '" class="song-card">';
-                    songCardHtml += '<div class="song-info">';
-                    songCardHtml += '<h3 class="song-title">' + song["title"] + '</h3>';
-                    songCardHtml += '<p class="song-artist">' + song["artist"] + '</p>';
-                    songCardHtml += '</div>';
-                    songCardHtml += '<div class="song-date">' + song["date"] + '</div>';
-                    songCardHtml += '</div>';
-                    $('#songsArea').append(songCardHtml);
-                });
+        function displaySongs(){
+            $.ajax({
+                type: "GET",
+                url: "/user/getSongs",
+                data: { id: ${id} },  // Any additional parameters you want to send
+                success: function(response) {
+                    songList = response;
+                    console.log(songList);
+                    $('#songsArea').empty();
+                    // Loop through the product list and generate HTML for each product card
+                    songList.forEach(function(song) {
+                        var songCardHtml = '<div id="' + song["id"] + '" class="song-card">';
+                        songCardHtml += '<div class="song-info">';
+                        songCardHtml += '<h3 class="song-title">' + song["title"] + '</h3>';
+                        songCardHtml += '<p class="song-artist">' + song["artist"] + '</p>';
+                        songCardHtml += '</div>';
+                        songCardHtml += '<div class="song-date">' + song["date"] + '</div>';
+                        songCardHtml += '</div>';
+                        $('#songsArea').append(songCardHtml);
+                    });
 
-                // 첫 번째 곡을 자동으로 로드하고 재생
-                if (songList.length > 0) {
-                    loadAndPlaySong(0);
+                    // 첫 번째 곡을 자동으로 로드하고 재생
+                    if (songList.length > 0) {
+                        loadAndPlaySong(0);
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error("ajax 호출 error 발생");
                 }
-            },
-            error: function(xhr, status, error) {
-                console.error("ajax 호출 error 발생");
-            }
-        });
+            });
+        }
 
         var player;
 
@@ -239,12 +242,13 @@
                 url: "/user/addSongs",
                 data: { id: ${id} },  // Any additional parameters you want to send
                 success: function(response) {
-                    console.log("Success")
+                    console.log("Like Success")
                 },
                 error: function(xhr, status, error) {
                     console.error("ajax 호출 error 발생");
                 }
             });
+            displaySongs();
         });
 
         $('#dislike-button').on('click', function() {
@@ -259,6 +263,7 @@
                     console.error("ajax 호출 error 발생");
                 }
             });
+            displaySongs();
         });
 
         $('#prev-button').on('click', function() {
