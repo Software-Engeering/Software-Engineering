@@ -6,7 +6,7 @@
     <title>비밀번호 찾기 페이지</title>
 </head>
 <body>
-<form action="/join" method="post">
+<form action="/findPassword" method="post">
     <div class="container">
         <div class="copy">
     <span class="container-1">

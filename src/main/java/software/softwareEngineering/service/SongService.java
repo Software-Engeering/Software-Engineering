@@ -72,7 +72,6 @@ public class SongService {
         playlist.energy = energy/(songs.size()+1);
         playlist.valence = valence/(songs.size()+1);
         playlist.danceability = danceability/(songs.size()+1);
-
         prefSongs(id);
     }
 

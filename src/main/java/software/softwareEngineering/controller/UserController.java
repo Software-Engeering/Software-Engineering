@@ -50,5 +50,4 @@ public class UserController {
 
         return userService.updateEmailAndPassword(user.getAccount(),oldPassword, newEmail, newPassword);
     }
-
 }

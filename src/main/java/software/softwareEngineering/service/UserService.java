@@ -42,4 +42,10 @@ public class UserService {
             return false;
         }
     }
+
+    public void findPassword(String username, String email) {
+        User user = userRepository.findPassword(username, email);
+        user.updateEmailAndPassword(email, passwordEncoder.encode("1234"));
+        userRepository.save(user);
+    }
 }

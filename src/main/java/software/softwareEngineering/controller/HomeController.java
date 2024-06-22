@@ -73,8 +73,14 @@ public class HomeController {
 
     // 비밀번호 찾기 페이지
     @GetMapping("/findPassword")
-    public String findPassword() {
+    public String findPasswordForm() {
         return "findPassword";
+    }
+
+    @PostMapping("/findPassword")
+    public String findPassword(String account, String email) {
+        userService.findPassword(account, email);
+        return "showPassword";
     }
 
     @PostMapping("/join")
