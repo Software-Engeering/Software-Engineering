@@ -20,9 +20,9 @@ public class SongService {
     private final SongRepository songRepository;
     private final PlaylistRepository playlistRepository;
 
+    @Transactional
     public List<SongDTO> getSongList(Long id) {
-        Playlist playlist = playlistRepository.findById(id).get();
-        List<Song> songs = playlist.getSongs();
+        List<Song> songs = songRepository.getSongsByPlaylistId(id);
         List<SongDTO> songDTOList = new ArrayList<>();
 
         for (Song song : songs) {
@@ -76,12 +76,10 @@ public class SongService {
     }
 
     public void deleteSongs(Long id) {
-        Playlist playlist = playlistRepository.findById(id).get();
-        List<Song> songs = playlist.getSongs();
-        for (int i = 0; i < 10; i++) {
-            songs.remove(songs.size() - 1);
+        List<Song> songs = songRepository.getSongsByPlaylistId(id);
+        for (int i = songs.size() - 1; i >= songs.size()-10; i--) {
+            songRepository.updatePointingByPlaylistId(id, songs.get(i).getId(), "n");
         }
-        prefSongs(id);
     }
 
     public boolean checkSong(Long id, List<Map<String, Object>> pointers) {
@@ -96,6 +94,7 @@ public class SongService {
         return check;
     }
 
+    @Transactional
     public void prefSongs(Long id){
         Playlist playlist = playlistRepository.findById(id).get();
         Long danceability = playlist.getDanceability();
