@@ -47,7 +47,7 @@ public class SongService {
     @Transactional
     public void updatePref(Long id){
         Playlist playlist = playlistRepository.findById(id).get();
-        List<Song> songs = playlist.getSongs();
+        List<Song> songs = songRepository.getSongsByPlaylistId(id);
         Long danceability = playlist.getDanceability();
         Long valence = playlist.getValence();
         Long energy = playlist.getEnergy();
@@ -65,14 +65,15 @@ public class SongService {
             liveness += Long.valueOf(s.getLiveness());
             speechiness += Long.valueOf(s.getSpeechiness());
         }
-        playlist.acousticness = acousticness/(songs.size()+1);
-        playlist.instrumentainess = instrumentainess/(songs.size()+1);
-        playlist.liveness = liveness/(songs.size()+1);
-        playlist.speechiness = speechiness/(songs.size()+1);
-        playlist.energy = energy/(songs.size()+1);
-        playlist.valence = valence/(songs.size()+1);
-        playlist.danceability = danceability/(songs.size()+1);
+        playlist.acousticness = Long.valueOf(acousticness/(songs.size()+1));
+        playlist.instrumentainess = Long.valueOf(instrumentainess/(songs.size()+1));
+        playlist.liveness = Long.valueOf(liveness/(songs.size()+1));
+        playlist.speechiness = Long.valueOf(speechiness/(songs.size()+1));
+        playlist.energy = Long.valueOf(energy/(songs.size()+1));
+        playlist.valence = Long.valueOf(valence/(songs.size()+1));
+        playlist.danceability = Long.valueOf(danceability/(songs.size()+1));
 
+        playlistRepository.save(playlist);
         prefSongs(id);
     }
 
