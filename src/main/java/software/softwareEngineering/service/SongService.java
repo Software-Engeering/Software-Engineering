@@ -89,7 +89,7 @@ public class SongService {
             return true;
         }
         for (Map<String, Object> pointer : pointers) {
-            if (pointer.get("song_id").equals(id)) {
+            if (String.valueOf(pointer.get("song_id")).equals(String.valueOf(id))) {
                 check = false;
             }
         }
@@ -109,7 +109,6 @@ public class SongService {
 
         List<Song> allSongs = songRepository.getAllSongs();
         HashMap<Long, Song> map = new HashMap<>();
-        List<Song> songs = playlist.getSongs();
         List<Long> sims = new ArrayList<>();
         List<Map<String, Object>> pointers = songRepository.getPointingByPlaylistId(id);
 
@@ -136,11 +135,12 @@ public class SongService {
                 }
             }
         }
-
+        System.out.println("Check");
         while ((sims.size() > 10) && (map.size() > 10)){
             map.remove(sims.get(sims.size()-1));
             sims.remove(sims.size()-1);
         }
+
         for (Long key: map.keySet()){
             Long songID = map.get(key).getId();
             songRepository.insertPointingByPlaylistId(id, songID, "y");
