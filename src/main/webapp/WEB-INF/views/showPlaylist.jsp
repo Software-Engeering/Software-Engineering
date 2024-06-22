@@ -117,7 +117,7 @@
     <h1 class="title">Playlist</h1>
     <div class="content">
         <div class="player-container">
-            <div id="youtube-video" class="youtube-player"></div>
+            <div id="youtube-video" class="youtube-player" style="border-radius: 10px"></div>
             <div class="controls">
                 <button id="prev-button"><img src="${pageContext.request.contextPath}/images/prev-icon.png" alt="Previous"></button>
                 <button id="play-pause-button"><img src="${pageContext.request.contextPath}/images/play-icon.png" alt="Play" id="play-pause-img"></button>
