@@ -1,5 +1,6 @@
 package software.softwareEngineering.service;
 
+import java.lang.reflect.Field;
 import java.util.*;
 
 import lombok.RequiredArgsConstructor;
@@ -87,10 +88,11 @@ public class SongService {
         if (pointers.size() < 10){
             return true;
         }
-        for (Object pointer : pointers) {
-
+        for (Map<String, Object> pointer : pointers) {
+            if (pointer.get("song_id").equals(id)) {
+                check = false;
+            }
         }
-
         return check;
     }
 
@@ -143,5 +145,7 @@ public class SongService {
             Long songID = map.get(key).getId();
             songRepository.insertPointingByPlaylistId(id, songID, "y");
         }
+
+        getSongList(id);
     }
 }
