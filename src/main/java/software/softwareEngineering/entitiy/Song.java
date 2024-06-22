@@ -23,9 +23,9 @@ public class Song {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    /*@ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "playlist_id")
-    private Playlist playlist;
+    private Playlist playlist;*/
 
     // 추후 추가 예정
     private String track_name;
@@ -43,7 +43,7 @@ public class Song {
     private String liveness;
     private String speechiness;
 
-    public void addPlayList(Playlist playlist) {
+    /*public void addPlayList(Playlist playlist) {
         this.playlist = playlist;
-    }
+    }*/
 }
