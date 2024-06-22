@@ -37,9 +37,7 @@ public class UserController {
         List<Map<String,Object>> resultList = playlistService.getCategoriesByUserId(user.getId());
         List<Map<String,Object>> favoriteList = playlistService.getFavoriteArtistsByUserId(user.getId());
 
-        //임시
-        //List<Map<String,Object>> songList = songService.getAllSongs();
-
+        model.addAttribute("user", user);
         model.addAttribute("resultList", resultList);
         model.addAttribute("favoriteList", favoriteList);
         return "profileForm";

@@ -21,10 +21,13 @@
                 </div>
 
                 <div class="input-and-button">
-
-                    <input type="text" name="account" placeholder="Username" class="label" /><br/>
-                    <input type="email" name="email" placeholder="Email" class="label-2"/><br/>
+                    <b>Username</b>
+                    <input type="text" name="account" placeholder="${user.account}" class="label" /><br/>
+                    <b>Email</b>
+                    <input type="email" name="email"  placeholder="${user.email}" class="label-2"/><br/>
+                    <b>Current Password</b>
                     <input type="password" name="password" placeholder="Current Password" class="label-1"/><br/>
+                    <b>New Password</b>
                     <input type="password" name="password" placeholder="New Password" class="label-1"/><br/>
 
                     <button class="button" type="submit">
@@ -179,6 +182,8 @@
 
 
 <script type="text/javascript">
+
+
     const labels = [];
     const data = [];
 
