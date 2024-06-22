@@ -49,6 +49,16 @@ public class HomeController {
         return "index";
     }*/
 
+    //default (로그인 여부)
+    @GetMapping("/")
+    public ModelAndView home(Authentication authentication) {
+        if (authentication != null && authentication.isAuthenticated()) {
+            return new ModelAndView("redirect:/user/playlistForm");
+        } else {
+            return new ModelAndView("redirect:/user/loginForm");
+        }
+    }
+
     // 로그인 페이지
     @GetMapping("/loginForm")
     public String loginForm() {
