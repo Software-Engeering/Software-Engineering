@@ -22,34 +22,6 @@ public class SongService {
     public List<Song> playlistSongs;
     private Long playlistID;
 
-    /*public List<Song> makeSongList(String category) {
-
-        List<Song> songList = new ArrayList<>();
-        Pageable pageable = PageRequest.of(0, 10);
-
-        switch (category) {
-            case "exercise":
-                songList = songRepository.getExercise(pageable);
-                break;
-            case "drive":
-                songList = songRepository.getDrive(pageable);
-                break;
-            case "study":
-                songList = songRepository.getStudy(pageable);
-                break;
-            case "fun":
-                songList = songRepository.getFun(pageable);
-                break;
-            case "midnight":
-                songList = songRepository.getMidnight(pageable);
-                break;
-            case "rain":
-                songList = songRepository.getRain(pageable);
-                break;
-        }
-        return songList;
-    }*/
-
     public List<SongDTO> getSongList(Long id) {
         Playlist playlist = playlistRepository.findById(id).get();
         List<Song> songs = playlist.getSongs();
@@ -117,6 +89,13 @@ public class SongService {
         prefSongs(id);
     }
 
+    public boolean checkSong(Long id, List<Object> pointers) {
+        boolean check = true;
+
+
+        return check;
+    }
+
     public void prefSongs(Long id){
         Playlist playlist = playlistRepository.findById(id).get();
         Long danceability = playlist.getDanceability();
@@ -131,9 +110,18 @@ public class SongService {
         HashMap<Long, Song> map = new HashMap<>();
         List<Song> songs = playlist.getSongs();
         List<Long> sims = new ArrayList<>();
+        List<Object> pointers = songRepository.getPointingByPlaylistId(id);
 
         for (Song s: allSongs){
-            if (s.getPlaylist() == null) {
+            boolean check = false;
+            if (pointers == null) {
+                check = true;
+            }
+            else{
+                check = checkSong(s.getId(), pointers);
+            }
+
+            if (check){
                 Long sim = 0L;
                 sim += Math.abs(danceability - Long.valueOf(s.getDanceability()));
                 sim += Math.abs(valence - Long.valueOf(s.getValence()));
