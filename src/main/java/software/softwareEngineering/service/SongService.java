@@ -19,15 +19,10 @@ public class SongService {
 
     private final SongRepository songRepository;
     private final PlaylistRepository playlistRepository;
-    public List<Song> playlistSongs;
-    private Long playlistID;
 
     public List<SongDTO> getSongList(Long id) {
         Playlist playlist = playlistRepository.findById(id).get();
         List<Song> songs = playlist.getSongs();
-        playlistID = id;
-        playlistSongs = songs;
-
         List<SongDTO> songDTOList = new ArrayList<>();
 
         for (Song song : songs) {
@@ -89,9 +84,14 @@ public class SongService {
         prefSongs(id);
     }
 
-    public boolean checkSong(Long id, List<Object> pointers) {
+    public boolean checkSong(Long id, List<Map<String, Object>> pointers) {
         boolean check = true;
+        if (pointers.size() < 10){
+            return true;
+        }
+        for (Object pointer : pointers) {
 
+        }
 
         return check;
     }
@@ -110,18 +110,10 @@ public class SongService {
         HashMap<Long, Song> map = new HashMap<>();
         List<Song> songs = playlist.getSongs();
         List<Long> sims = new ArrayList<>();
-        List<Object> pointers = songRepository.getPointingByPlaylistId(id);
+        List<Map<String, Object>> pointers = songRepository.getPointingByPlaylistId(id);
 
         for (Song s: allSongs){
-            boolean check = false;
-            if (pointers == null) {
-                check = true;
-            }
-            else{
-                check = checkSong(s.getId(), pointers);
-            }
-
-            if (check){
+            if (checkSong(s.getId(), pointers)) {
                 Long sim = 0L;
                 sim += Math.abs(danceability - Long.valueOf(s.getDanceability()));
                 sim += Math.abs(valence - Long.valueOf(s.getValence()));
@@ -143,15 +135,14 @@ public class SongService {
                 }
             }
         }
+
         while ((sims.size() > 10) && (map.size() > 10)){
             map.remove(sims.get(sims.size()-1));
             sims.remove(sims.size()-1);
         }
         for (Long key: map.keySet()){
-            Song song = map.get(key);
-            songs.add(song);
-            song.addPlayList(playlist);
-            songRepository.save(song); // why 왜 어째서 이걸
+            Long songID = map.get(key).getId();
+            songRepository.insertPointingByPlaylistId(id, songID, "y");
         }
     }
 }
