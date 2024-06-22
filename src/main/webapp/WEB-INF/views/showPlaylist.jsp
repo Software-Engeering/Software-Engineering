@@ -243,7 +243,8 @@
                 url: "/user/addSongs",
                 data: { id: ${id} },  // Any additional parameters you want to send
                 success: function(response) {
-                    console.log("Like Success")
+                    console.log("Like Success");
+                    window.location.href = "/user/playlist/" + ${id};
                 },
                 error: function(xhr, status, error) {
                     console.error("ajax 호출 error 발생");
@@ -259,6 +260,7 @@
                 data: { id: ${id} },  // Any additional parameters you want to send
                 success: function(response) {
                     console.log("Dislike success");
+                    window.location.href = "/user/playlist/" + ${id}
                 },
                 error: function(xhr, status, error) {
                     console.error("ajax 호출 error 발생");
