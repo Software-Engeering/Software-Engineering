@@ -29,5 +29,5 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     @Query(value = "INSERT INTO seSpotify.pointing (playlist_id, song_id, like_yn) VALUES (:playlist_id, :song_id, :yn)", nativeQuery = true)
     void insertPointingByPlaylistId(@Param("playlist_id") Long playlist_id, @Param("song_id") Long song_id, @Param("yn") String yn);
 
-    void deleteByPlaylistId(Long playlistId);
+    //void deleteByPlaylistId(Long playlistId);
 }

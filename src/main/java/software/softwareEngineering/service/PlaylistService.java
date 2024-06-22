@@ -114,7 +114,7 @@ public class PlaylistService {
             .liveness(liveness)
             .speechiness(speechiness)
             .user(user)
-            .songs(songs)
+            //.songs(songs)
             .build();
 
        /* for (Song song : songList) {

@@ -38,6 +38,6 @@ public class Playlist {
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 
-    @OneToMany(mappedBy = "playlist")
-    private List<Song> songs = new ArrayList<>();
+   /* @OneToMany(mappedBy = "playlist")
+    private List<Song> songs = new ArrayList<>();*/
 }

@@ -40,10 +40,10 @@ public class SongService {
         return songDTOList;
     }
 
-    @Transactional
+    /*@Transactional
     public void deleteSongsByPlaylistId(Long playlistId) {
         songRepository.deleteByPlaylistId(playlistId);
-    }
+    }*/
     @Transactional
     public void updatePref(Long id){
         Playlist playlist = playlistRepository.findById(id).get();

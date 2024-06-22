@@ -114,7 +114,7 @@ public class PlaylistController {
         UserDTO userDTO = (UserDTO) authentication.getPrincipal();
 
         User user = userService.find(userDTO);
-        songService.deleteSongsByPlaylistId(id);
+       // songService.deleteSongsByPlaylistId(id);
         user.deletePlaylist(playlist);
         playlistService.deletePlaylist(id);
 
