@@ -36,10 +36,12 @@ public class UserController {
 
         List<Map<String,Object>> resultList = playlistService.getCategoriesByUserId(user.getId());
         List<Map<String,Object>> favoriteList = playlistService.getFavoriteArtistsByUserId(user.getId());
+        List<Map<String,Object>> moodList = playlistService.getFavorateMoodByUserId(user.getId());
 
         model.addAttribute("user", user);
         model.addAttribute("resultList", resultList);
         model.addAttribute("favoriteList", favoriteList);
+        model.addAttribute("moodList", moodList);
         return "profileForm";
     }
 

@@ -45,8 +45,13 @@
         <c:set var="categories" value="${resultList}" />
 
         <div class="container">
+            <span class="container-1" style="margin-top: 0px">카테고리</span>
+            <canvas id="myChart" width="600px" height="300px" style="margin-left:0px; margin-top: 40px"></canvas>
+        </div>
+
+        <div class="container">
             <span class="container-1" style="margin-top: 0px">유저성향</span>
-            <canvas id="myChart" width="600px" height="300px" style="margin-left:120px; margin-top: 40px"></canvas>
+            <canvas id="moodChart" width="600px" height="300px" style="margin-left:0px; margin-top: 40px"></canvas>
         </div>
 
     </div>
@@ -62,8 +67,10 @@
 
         <c:forEach var="artist" items="${favoriteList}">
             <div class="artist">
+                <a href='<c:url value="https://www.google.com/search?q=${artist.artist_name}" />' target="_blank">
                 <div class="artist-name">${artist.artist_name}</div>
                 <div class="artist-count">Songs: ${artist.num}</div>
+                </a>
             </div>
         </c:forEach>
     </div>
@@ -107,8 +114,8 @@
 
 
     .container {
-    margin-left: 200px;
-    margin-right: 200px;
+    margin-left: 100px;
+    margin-right: 100px;
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
@@ -243,6 +250,8 @@
     data.push(${entry.num});
     </c:forEach>
 
+    console.log(data);
+
     // Chart.js로 차트 생성
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
@@ -273,4 +282,64 @@
             }
         }
     });
+
+
+    var moodList = [];
+
+    <c:forEach items="${moodList}" var="mood">
+    var moodObj = {
+        acousticness: ${mood['acousticness']},
+        instrumentainess: ${mood['instrumentainess']},
+        liveness: ${mood['liveness']},
+        speechiness: ${mood['speechiness']},
+        energy: ${mood['energy']},
+        valence: ${mood['valence']},
+        danceability: ${mood['danceability']}
+    };
+    moodList.push(moodObj);
+    </c:forEach>
+
+    // 차트를 그릴 Canvas 요소 가져오기
+    var ctx2 = document.getElementById('moodChart').getContext('2d');
+
+    // 데이터 처리
+    var labels2 = Object.keys(moodList[0]); // 첫 번째 항목의 key를 라벨로 사용
+    var data2 = Object.values(moodList[0]); // 첫 번째 항목의 값들을 데이터로 사용
+
+    // 차트 생성
+    var moodChart = new Chart(ctx2, {
+        type: 'bar', // 차트 타입 설정 (여기서는 막대형 차트를 사용)
+        data: {
+            labels: labels2, // 라벨 설정 (예: 'acousticness', 'instrumentainess', 등)
+            datasets: [{
+                label: 'Average Mood Values', // 라벨 이름 설정
+                data: data2, // 실제 데이터
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)', // 각 데이터에 대한 배경색
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)', // 각 데이터에 대한 테두리 색
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1 // 테두리 두께 설정
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true // y 축이 0부터 시작하도록 설정
+                }
+            }
+        }
+    });
+
 </script>
