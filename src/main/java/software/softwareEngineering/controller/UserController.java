@@ -2,12 +2,12 @@ package software.softwareEngineering.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import software.softwareEngineering.dto.PlaylistDTO;
 import software.softwareEngineering.dto.UserDTO;
 import software.softwareEngineering.entitiy.Playlist;
@@ -41,6 +41,14 @@ public class UserController {
         model.addAttribute("resultList", resultList);
         model.addAttribute("favoriteList", favoriteList);
         return "profileForm";
+    }
+
+    @PostMapping("/updateAccount")
+    public @ResponseBody boolean updateEmailAndPassword(Authentication authentication, @RequestParam String oldPassword, @RequestParam String newEmail, @RequestParam String newPassword, Model model) {
+        UserDTO userDTO = (UserDTO) authentication.getPrincipal();
+        User user = userService.find(userDTO);
+
+        return userService.updateEmailAndPassword(user.getAccount(),oldPassword, newEmail, newPassword);
     }
 
 }

@@ -26,6 +26,7 @@ public class CustomSecurityConfig {
         http.authorizeHttpRequests(authorize -> {
             authorize
                 .requestMatchers("/user/**").authenticated()
+                    .requestMatchers("/updateAccount").authenticated()
                 .anyRequest().permitAll();
         });
 

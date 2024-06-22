@@ -42,4 +42,9 @@ public class User {
     public void deletePlaylist(Playlist playlist) {
         playlists.remove(playlist);
     }
+
+    public void updateEmailAndPassword(String newEmail, String newPassword) {
+        this.email = newEmail;
+        this.password = newPassword;
+    }
 }

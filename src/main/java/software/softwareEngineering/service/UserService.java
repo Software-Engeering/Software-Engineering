@@ -1,5 +1,6 @@
 package software.softwareEngineering.service;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,18 @@ public class UserService {
 
     public User find(UserDTO userDTO) {
         return userRepository.getWithRoles(userDTO.getAccount());
+    }
+
+    @Transactional
+    public boolean updateEmailAndPassword(String account, String oldPassword, String newEmail, String newPassword) {
+        User user = userRepository.getWithRoles(account);
+        if (user != null && passwordEncoder.matches(oldPassword, user.getPassword())) {
+            user.updateEmailAndPassword(newEmail, passwordEncoder.encode(newPassword));
+            userRepository.save(user);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }

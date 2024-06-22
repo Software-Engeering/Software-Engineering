@@ -11,7 +11,7 @@
 <body>
     <div style="display:flex;flex-direction: row">
         <div>
-        <form action="/join" method="post">
+<%--            <form id="updateAccountForm">--%>
             <div class="container">
 
                 <div class="copy">
@@ -21,22 +21,24 @@
                 </div>
 
                 <div class="input-and-button">
-                    <b>Username</b>
-                    <input type="text" name="account" placeholder="${user.account}" class="label" /><br/>
-                    <b>Email</b>
-                    <input type="email" name="email"  placeholder="${user.email}" class="label-2"/><br/>
-                    <b>Current Password</b>
-                    <input type="password" name="password" placeholder="Current Password" class="label-1"/><br/>
-                    <b>New Password</b>
-                    <input type="password" name="password" placeholder="New Password" class="label-1"/><br/>
 
-                    <button class="button" type="submit">
+                    <b>Username</b>
+                    <input type="text" name="account" placeholder="${user.account}" class="label" disabled/><br/>
+                    <b>Email</b>
+                    <input type="email" name="newEmail"  value="${user.email}" class="label-3"/><br/>
+                    <b>Current Password</b>
+                    <input type="password" name="oldPassword" placeholder="Current Password" class="label-1"/><br/>
+                    <b>New Password</b>
+                    <input type="password" name="newPassword" placeholder="New Password" class="label-1"/><br/>
+
+                    <button class="button" id="updateAccountForm">
                         <span class="container-2">Save changes</span>
                     </button>
+
                 </div>
             </div>
 
-        </form>
+<%--        </form>--%>
         </div>
 
         <!-- 데이터베이스에서 가져온 데이터 -->
@@ -178,11 +180,60 @@
     line-height:  1.5;
     color: #828282;
     border-radius: 20px;
-}</style>
+}
+
+    .label-3 {
+        overflow-wrap: break-word;
+        font-family:  'Inter';
+        font-weight:  500;
+        font-size:  17px;
+        line-height:  1.5;
+        color: black;
+        border-radius: 20px;
+    }
+</style>
 
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        $('#updateAccountForm').on('click', function (e) {
+            e.preventDefault();
 
+            // 입력 필드 값 가져오기
+            var oldPassword = $('input[name="oldPassword"]').val();
+            var newEmail = $('input[name="newEmail"]').val();
+            var newPassword = $('input[name="newPassword"]').val();
+
+            // 입력 값이 비어 있는지 확인
+            if (oldPassword.trim() === '' || newEmail.trim() === '' || newPassword.trim() === '') {
+                alert('필요한 모든 값을 입력 후 다시 시도해 주세요.');
+                return; // 필드가 비어 있으면 AJAX 호출을 중단
+            }
+
+            // AJAX 요청 보내기
+            $.ajax({
+                type: 'POST',
+                url: '/user/updateAccount',
+                data: {
+                    oldPassword: oldPassword,
+                    newEmail: newEmail,
+                    newPassword: newPassword
+                },
+                success: function (response) {
+                    if(response){
+                        alert("사용자 정보를 성공적으로 변경했습니다.");
+                        window.location.href = "/user/profileForm";
+                    }else{
+                        alert("기존 비밀번호가 일치하지 않습니다.");
+                    }
+
+                },
+                error: function () {
+                    alert('처리 중 오류 발생. 관리자에게 문의해 주세요.');
+                }
+            });
+        });
+    });
 
     const labels = [];
     const data = [];
