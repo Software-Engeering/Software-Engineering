@@ -102,9 +102,9 @@ public class PlaylistController {
         UserDTO userDTO = (UserDTO) authentication.getPrincipal();
 
         User user = userService.find(userDTO);
-        List<Song> songList = songService.makeSongList(category);
-        playlistService.makePlaylist(songList, user, category);
-
+        //List<Song> songList = songService.makeSongList(category);
+        Long id = playlistService.makePlaylist(user, category);
+        songService.prefSongs(id);
         return "redirect:playlistForm";
     }
 
