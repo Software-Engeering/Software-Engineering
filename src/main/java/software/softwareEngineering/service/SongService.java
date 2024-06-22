@@ -44,7 +44,7 @@ public class SongService {
     public void deleteSongsByPlaylistId(Long playlistId) {
         songRepository.deleteByPlaylistId(playlistId);
     }
-
+    @Transactional
     public void updatePref(Long id){
         Playlist playlist = playlistRepository.findById(id).get();
         List<Song> songs = playlist.getSongs();
@@ -142,8 +142,8 @@ public class SongService {
         }
 
         for (Long key: map.keySet()){
-            Long songID = map.get(key).getId();
-            songRepository.insertPointingByPlaylistId(id, songID, "y");
+            Long song_id = map.get(key).getId();
+            songRepository.insertPointingByPlaylistId(id, song_id, "y");
         }
 
         getSongList(id);
