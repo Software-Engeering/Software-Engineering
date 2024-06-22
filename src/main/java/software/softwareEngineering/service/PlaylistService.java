@@ -37,7 +37,7 @@ public class PlaylistService {
         return playlistDTOs;
     }
 
-    public void makePlaylist(List<Song> songList, User user, String category) {
+    public Long makePlaylist(User user, String category) {
         Long danceability = 0L;
         Long valence = 0L;
         Long energy = 0L;
@@ -45,6 +45,7 @@ public class PlaylistService {
         Long instrumentainess = 0L;
         Long liveness = 0L;
         Long speechiness = 0L;
+        List<Song> songs = new ArrayList<>();
 
         switch(category){
             case "exercise":
@@ -105,7 +106,6 @@ public class PlaylistService {
         Playlist playlist = Playlist.builder()
             .title("Playlist")
             .category(category)
-            .songs(songList)
             .danceability(danceability)
             .valence(valence)
             .energy(energy)
@@ -114,15 +114,20 @@ public class PlaylistService {
             .liveness(liveness)
             .speechiness(speechiness)
             .user(user)
+            .songs(songs)
             .build();
 
-        for (Song song : songList) {
+       /* for (Song song : songList) {
             song.addPlayList(playlist);
-        }
+        }*/
 
         playlistRepository.save(playlist);
 
         user.addPlaylist(playlist);
+
+        System.out.println("=======================================");
+        System.out.println(playlist.getId());
+        return playlist.getId();
     }
 
     @Transactional

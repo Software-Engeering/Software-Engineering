@@ -22,7 +22,7 @@ public class SongService {
     public List<Song> playlistSongs;
     private Long playlistID;
 
-    public List<Song> makeSongList(String category) {
+    /*public List<Song> makeSongList(String category) {
 
         List<Song> songList = new ArrayList<>();
         Pageable pageable = PageRequest.of(0, 10);
@@ -48,7 +48,7 @@ public class SongService {
                 break;
         }
         return songList;
-    }
+    }*/
 
     public List<SongDTO> getSongList(Long id) {
         Playlist playlist = playlistRepository.findById(id).get();
@@ -161,7 +161,10 @@ public class SongService {
             sims.remove(sims.size()-1);
         }
         for (Long key: map.keySet()){
-            songs.add(map.get(key));
+            Song song = map.get(key);
+            songs.add(song);
+            song.addPlayList(playlist);
+            songRepository.save(song); // why 왜 어째서 이걸
         }
     }
 }
