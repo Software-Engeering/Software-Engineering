@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +79,8 @@
         .playlist-container {
             flex: 1;
             margin-left: 20px;
+            max-height: 700px; /* 고정 높이 설정 */
+            overflow-y: auto; /* 수직 스크롤 추가 */
         }
         .song-card, .header-row {
             display: flex;
@@ -126,7 +126,6 @@
             <div class="like-dislike-container">
                 <button id="like-button"><img src="${pageContext.request.contextPath}/images/like.png" alt="Like"></button>
                 <button id="dislike-button"><img src="${pageContext.request.contextPath}/images/dislike.png" alt="Dislike"></button>
-
             </div>
         </div>
         <div class="playlist-container">
@@ -134,8 +133,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script>
     $(document).ready(function() {
