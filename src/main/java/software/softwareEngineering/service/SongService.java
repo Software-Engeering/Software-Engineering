@@ -28,11 +28,11 @@ public class SongService {
 
         for (Song song : songs) {
             SongDTO songDTO = SongDTO.builder()
-                .title(song.getTrack_name())
-                .artist(song.getArtist_name())
-                .date(song.getReleased_data())
-                .time("3")
-                .build();
+                    .title(song.getTrack_name())
+                    .artist(song.getArtist_name())
+                    .date(song.getReleased_data())
+                    .time("3")
+                    .build();
 
             songDTOList.add(songDTO);
         }
@@ -76,11 +76,14 @@ public class SongService {
         prefSongs(id);
     }
 
+    @Transactional
     public void deleteSongs(Long id) {
         List<Song> songs = songRepository.getSongsByPlaylistId(id);
         for (int i = songs.size() - 1; i >= songs.size()-10; i--) {
             songRepository.updatePointingByPlaylistId(id, songs.get(i).getId(), "n");
         }
+
+        prefSongs((id));
     }
 
     public boolean checkSong(Long id, List<Map<String, Object>> pointers) {

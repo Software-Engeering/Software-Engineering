@@ -21,6 +21,7 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     @Query(value = "select p.* from pointing as p where playlist_id =  :id", nativeQuery = true)
     List<Map<String,Object>> getPointingByPlaylistId(@Param("id") Long id);
 
+    @Modifying
     @Query(value = "UPDATE seSpotify.pointing SET like_yn = :yn where playlist_id = :playlist_id and song_id = :song_id", nativeQuery = true)
     void updatePointingByPlaylistId(@Param("playlist_id") Long playlist_id, @Param("song_id") Long song_id, @Param("yn") String yn);
 
