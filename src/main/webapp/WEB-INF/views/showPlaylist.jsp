@@ -188,7 +188,8 @@
             var artist = song.artist;
             var keyword = title + " " + artist;
             // var apiKey = 'AIzaSyClBGCTWjdiAwG8Kwf--O_julSFSQ_bxRo';
-            var apiKey = 'AIzaSyCqb0nNDIxDGNG0GrA5kzcxF4zVYdKumH8';
+            // var apiKey = 'AIzaSyCqb0nNDIxDGNG0GrA5kzcxF4zVYdKumH8';
+            var apiKey = 'AIzaSyAXjMipvaHfGVxxb7lw1DmzSkgsMFZkSsM';
             var apiUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=1&q=' + encodeURIComponent(keyword) + '&key=' + apiKey;
 
             // YouTube Data API 호출
