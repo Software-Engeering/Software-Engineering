@@ -50,8 +50,8 @@
             cursor: pointer;
         }
         .controls button img {
-            width: 50px;
-            height: 50px;
+            width: 65px;
+            height: 65px;
         }
         .like-dislike-container {
             display: flex;
