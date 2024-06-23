@@ -154,4 +154,19 @@ public class SongService {
 
         getSongList(id);
     }
+
+    @Transactional
+    public void prefSongsByArtist(Long id, String artist){
+        Playlist playlist = playlistRepository.findById(id).get();
+
+        //특정 artist 가 포함된 곡만 가져옴. (like 문)
+
+        List<Song> allSongs = songRepository.getSongsByArtist(artist);
+
+        for (Song s: allSongs){
+            songRepository.insertPointingByPlaylistId(id, s.getId(), "y");
+        }
+
+        getSongList(id);
+    }
 }

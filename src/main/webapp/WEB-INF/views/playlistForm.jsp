@@ -252,6 +252,9 @@
                             case "study":
                                 imageUrl = '"background-image: url(/images/studyingImage.jpg); background-size: cover"'
                                 break;
+                            case "artist":
+                                imageUrl ='"background-image: url(/images/artist.jpg); background-size: cover"'
+                                break;
                         }
                         let id = product["id"];
                         cdNum = $(".card").eq(i);

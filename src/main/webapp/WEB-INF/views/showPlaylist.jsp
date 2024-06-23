@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+
 <head>
     <title>Playlist</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -112,7 +112,7 @@
         }
     </style>
 </head>
-<body>
+
 <div class="container">
     <h1 class="title">Playlist</h1>
     <div class="content">
@@ -127,6 +127,9 @@
                 <button id="like-button"><img src="${pageContext.request.contextPath}/images/like.png" alt="Like"></button>
                 <button id="dislike-button"><img src="${pageContext.request.contextPath}/images/dislike.png" alt="Dislike"></button>
             </div>
+            <div class="artist-container" style="margin-top: 70px;font-size: 23px">
+               Artist : <span id="artistNotice" style="font-weight: bold"></span>
+            </div>
         </div>
         <div class="playlist-container">
             <div id="songsArea"></div>
@@ -134,12 +137,29 @@
     </div>
 </div>
 
+<input id="category" value="${category}" type="hidden"/>
+<input id="title" value="${title}" type="hidden"/>
+
 <script>
     $(document).ready(function() {
         var songList = [];  // 전역 변수로 songList 선언
         var currentIndex = -1;  // 현재 재생 중인 곡의 인덱스
         var isPlaying = false;  // 현재 재생 상태를 나타내는 변수
         displaySongs();
+        artistPageChk();
+
+        function artistPageChk(){
+            if($("#category").val() == "artist"){
+                $(".like-dislike-container").hide();
+                $(".artist-container").show();
+                $("#artistNotice").text($("#title").val());
+
+            }else{
+                $(".like-dislike-container").show();
+                $(".artist-container").hide();
+                $("#artistNotice").text("");
+            }
+        }
 
         function displaySongs(){
             $.ajax({
@@ -301,6 +321,7 @@
                 isPlaying = false;  // 재생 상태 변경
             }
         }
+
     });
 </script>
 </body>

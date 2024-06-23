@@ -37,7 +37,7 @@ public class PlaylistService {
         return playlistDTOs;
     }
 
-    public Long makePlaylist(User user, String category) {
+    public Long makePlaylist(User user, String category, String playlistName) {
         Long danceability = 0L;
         Long valence = 0L;
         Long energy = 0L;
@@ -102,9 +102,18 @@ public class PlaylistService {
                 liveness = 45L;
                 speechiness = 35L;
                 break;
+            case "artist":
+                danceability = 0L;
+                valence = 0L;
+                energy = 0L;
+                acousticness = 0L;
+                instrumentainess = 0L;
+                liveness = 0L;
+                speechiness = 0L;
+                break;
         }
         Playlist playlist = Playlist.builder()
-            .title("Playlist")
+                .title((playlistName == null || playlistName.trim().isEmpty()) ? "Playlist" : playlistName.trim())
             .category(category)
             .danceability(danceability)
             .valence(valence)

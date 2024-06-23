@@ -62,9 +62,10 @@ public class PlaylistController {
     @GetMapping("/playlist/{id}")
     public String playlist(@PathVariable(name = "id") Long id, Model model) {
         List<SongDTO> songList = songService.getSongList(id);
-
+        Playlist playlist = playlistService.findPlaylist(id);
         model.addAttribute("songList", songList);
-
+        model.addAttribute("category", playlist.getCategory());
+        model.addAttribute("title", playlist.getTitle());
         return "showPlaylist";
     }
 
@@ -103,7 +104,9 @@ public class PlaylistController {
 
         User user = userService.find(userDTO);
         //List<Song> songList = songService.makeSongList(category);
-        Long id = playlistService.makePlaylist(user, category);
+
+        String playlistName = "";
+        Long id = playlistService.makePlaylist(user, category, playlistName);
         songService.prefSongs(id);
         return "redirect:playlistForm";
     }
@@ -119,5 +122,18 @@ public class PlaylistController {
         playlistService.deletePlaylist(id);
 
         return "redirect:/user/playlistForm";
+    }
+
+    @PostMapping("/addPlaylistByArtist")
+    public @ResponseBody boolean addPlaylistByArtist(@RequestParam String artist, Authentication authentication) {
+        System.out.println(artist);
+        UserDTO userDTO = (UserDTO) authentication.getPrincipal();
+
+        User user = userService.find(userDTO);
+        //List<Song> songList = songService.makeSongList(category);
+        String category = "artist";
+        Long id = playlistService.makePlaylist(user, category, artist);
+        songService.prefSongsByArtist(id, artist);
+        return true;
     }
 }

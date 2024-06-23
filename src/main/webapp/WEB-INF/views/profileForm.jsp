@@ -66,9 +66,10 @@
         <c:forEach var="artist" items="${favoriteList}">
             <div class="artist">
                 <a href='<c:url value="https://www.google.com/search?q=${artist.artist_name}" />' target="_blank">
-                <div class="artist-name">${artist.artist_name}</div>
-                <div class="artist-count">Songs: ${artist.num}</div>
+                <div class="artist-name"><span>${artist.artist_name}</span></div>
+                <div class="artist-count"><span>Songs: ${artist.num}</span></div>
                 </a>
+                    <button class="addToPlaylist" style="margin-top: 20px;border-radius: 20px;background-color: black;border: black;height: 40px;"><span style="color: white">플레이리스트에 추가</span></button>
             </div>
         </c:forEach>
     </div>
@@ -357,4 +358,22 @@
         }
     });
 
+    $(document).ready(function() {
+        $('.addToPlaylist').click(function() {
+            console.log($(this).closest('.artist').find('.artist-name').text());
+            $.ajax({
+                type: 'POST',
+                url: '/user/addPlaylistByArtist',
+                data: {
+                    artist: $(this).closest('.artist').find('.artist-name').text()
+                },
+                success: function(response) {
+                    alert('플레이리스트가 추가되었습니다');
+                },
+                error: function(xhr, status, error) {
+                    alert('플레이리스트 추가에 실패했습니다. 다시 시도해주세요.');
+                }
+            });
+        });
+    });
 </script>

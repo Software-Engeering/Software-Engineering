@@ -14,6 +14,9 @@ public interface SongRepository extends JpaRepository<Song, Long> {
     @Query(value = "SELECT * FROM song", nativeQuery = true)
     List<Song> getAllSongs();
 
+    @Query(value = "SELECT * FROM song WHERE artist_name like %:artist%", nativeQuery = true)
+    List<Song> getSongsByArtist(@Param("artist") String artist);
+
     //playlist id 를 넘기면 포함된 모든 song 정보를 반환.
     @Query(value = "select s.* from song as s left join pointing as p on s.id = p.song_id where p.playlist_id = :id and p.like_yn = \"y\"", nativeQuery = true)
     List<Song> getSongsByPlaylistId(@Param("id") Long id);
