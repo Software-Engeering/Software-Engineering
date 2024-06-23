@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import software.softwareEngineering.entitiy.User;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+import java.util.Optional;
 
+public interface UserRepository extends JpaRepository<User, Long> {
+    @Query("select u from User u where u.email = :email")
+    User findByEmail(@Param("email") String email);
     @Query("select u from User u where u.account = :account")
     User getWithRoles(@Param("account") String account);
 

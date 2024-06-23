@@ -16,7 +16,11 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     // 회원가입
-    public void join(UserDTO userDTO) {
+    public Boolean join(UserDTO userDTO) {
+        if (userRepository.findByEmail(userDTO.getEmail()) != null) {
+            return false;
+        }
+
         User user = User.builder()
             .account(userDTO.getAccount())
             .password(passwordEncoder.encode(userDTO.getPassword()))
@@ -24,6 +28,7 @@ public class UserService {
             .build();
 
         userRepository.save(user);
+        return true;
     }
 
     public User find(UserDTO userDTO) {

@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입 페이지</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-<form action="/join" method="post">
+
     <div class="container">
 
         <div class="copy">
@@ -17,17 +18,17 @@
 
         <div class="input-and-button">
 
-        <input type="text" name="account" placeholder="Username" class="label field" /><br/>
-        <input type="password" name="password" placeholder="Password" class="label-1 field"/><br/>
-            <input type="email" name="email" placeholder="Email" class="label-2 field"/><br/>
+        <input type="text" id="account" placeholder="Username(id)" class="label field" /><br/>
+        <input type="password" id="password" placeholder="Password" class="label-1 field"/><br/>
+            <input type="email" id="email" placeholder="Email" class="label-2 field"/><br/>
 
-            <button class="button" type="submit">
+            <button id="joinButton" class="button">
       <span class="container-2">회원가입</span>
             </button>
         </div>
     </div>
 
-</form>
+
 </body>
 </html>
 
@@ -117,3 +118,30 @@
     box-sizing: border-box;
 }
 </style>
+
+
+<script>
+    $(document).ready(function() {
+        $('#joinButton').click(function() {
+            var account = $('#account').val();
+            var password = $('#password').val();
+            var email = $('#email').val();
+            $.ajax({
+                url: '/join',
+                type: 'POST',
+                data: { account: account, password: password, email: email },
+                success: function(response) {
+                    if(response){
+                        alert("회원가입 성공. 로그인 창으로 이동합니다.");
+                        window.location.href = "/loginForm"
+                    } else {
+                        alert("이미 등록된 이메일 주소입니다. 다시 시도하세요.");
+                    }
+                },
+                error: function(xhr) {
+                    alert("요청 도중 error 발생");
+                }
+            });
+        });
+    });
+</script>

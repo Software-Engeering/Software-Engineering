@@ -82,9 +82,8 @@ public class HomeController {
     }
 
     @PostMapping("/join")
-    public String join(UserDTO userDTO) {
-        userService.join(userDTO);
+    public @ResponseBody Boolean join(UserDTO userDTO) {
 
-        return "redirect:loginForm";
+        return userService.join(userDTO);
     }
 }
