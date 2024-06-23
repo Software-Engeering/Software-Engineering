@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>비밀번호 찾기 페이지</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-<form action="/findPassword" method="post">
+
     <div class="container">
         <div class="copy">
     <span class="container-1">
@@ -14,14 +15,14 @@
     </span>
         </div>
         <div class="input-and-button">
-    <input type="text" name="account" placeholder="Username" class="label"/><br/>
-    <input type="email" name="email" placeholder="Email" class="label-2"/><br/>
-    <button type="submit" class="button">
-        <span class="container-2">찾기</span>
-    </button>
+    <input type="text" id="account" placeholder="Username" class="label field"/><br/>
+    <input type="email" id="email" placeholder="Email" class="label-2 field"/><br/>
+            <button id="findPasswordButton" class="button"><span style="color: #FFFFFF;">Find Password</span></button>
+                <span class="container-2">찾기</span>
+            </button>
     </div>
     </div>
-</form>
+
 </body>
 </html>
 
@@ -89,4 +90,48 @@
     font-size:  20px;
     line-height:  1.5;
     color: #828282;
-}</style>
+}
+
+.field {
+    border-radius: 8px;
+    border: 1px solid #E0E0E0;
+    background: #FFFFFF;
+    margin-bottom: 16px;
+    padding: 4px 15px;
+    height: 40px;
+    width: 400px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.button {
+    border-radius: 8px;
+    background: #000000;
+    display: flex;
+    padding: 8px 0.9px 8px 0;
+    width: 400px;
+    justify-content: center;
+    box-sizing: border-box;
+}
+</style>
+
+<script>
+    $(document).ready(function() {
+        $('#findPasswordButton').click(function() {
+            var account = $('#account').val();
+            var email = $('#email').val();
+            $.ajax({
+                url: '/findPassword',
+                type: 'POST',
+                data: { account: account, email: email },
+                success: function(response) {
+                    alert(response);
+                    window.location.href = "/loginForm"
+                },
+                error: function(xhr) {
+                    alert('No user found with the provided information.');
+                }
+            });
+        });
+    });
+</script>

@@ -43,9 +43,13 @@ public class UserService {
         }
     }
 
-    public void findPassword(String username, String email) {
+    public String findPassword(String username, String email) {
         User user = userRepository.findPassword(username, email);
+        if (user == null) {
+            return "No user found with the provided information.";
+        }
         user.updateEmailAndPassword(email, passwordEncoder.encode("1234"));
         userRepository.save(user);
+        return "Password has been successfully reset to '1234'.";
     }
 }
