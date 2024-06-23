@@ -9,17 +9,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div style="display:flex;flex-direction: row">
+    <div style="display:flex;flex-direction: row;">
         <div>
 <%--            <form id="updateAccountForm">--%>
             <div class="container">
-
                 <div class="copy">
                     <span class="container-1">
                       Edit Profile
                     </span>
                 </div>
-
                 <div class="input-and-button">
 
                     <b>Username</b>
@@ -37,7 +35,6 @@
 
                 </div>
             </div>
-
 <%--        </form>--%>
         </div>
 
@@ -50,6 +47,7 @@
         </div>
 
         <div class="container">
+            <a href="#" id="logoutButton" class="logout-link" style="color: black;text-align: right">Logout</a>
             <span class="container-1" style="margin-top: 0px">유저성향</span>
             <canvas id="moodChart" width="600px" height="300px" style="margin-left:0px; margin-top: 40px"></canvas>
         </div>
@@ -114,12 +112,13 @@
 
 
     .container {
-    margin-left: 100px;
-    margin-right: 100px;
+        width: 500px;
+    margin-left: 10px;
+    margin-right: 10px;
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
-    padding: 120px 0 30px 0;
+    padding: 120px 0px 30px 0px;
     box-sizing: border-box;
 }
 .copy {
@@ -203,6 +202,22 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $('#logoutButton').on('click', function (e) {
+            e.preventDefault();
+
+            $.ajax({
+                type: 'POST',
+                url: '/logout', // The URL of the servlet handling the logout
+                success: function (response) {
+                    alert('You have been logged out successfully.');
+                    window.location.href = '/loginForm'; // Redirect to the login page or homepage after logout
+                },
+                error: function () {
+                    alert('Error during logout. Please try again.');
+                }
+            });
+        });
+
         $('#updateAccountForm').on('click', function (e) {
             e.preventDefault();
 
