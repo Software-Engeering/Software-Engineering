@@ -113,8 +113,8 @@
 
     .container {
         width: 500px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: auto   ;
+    margin-right: auto;
     background: #FFFFFF;
     display: flex;
     flex-direction: column;
