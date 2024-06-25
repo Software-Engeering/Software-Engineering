@@ -27,12 +27,14 @@
 
 ## 개발 환경
 
-- Front : HTML, CSS, JavaScript, JSP
-- Back-end : Spring
+- Front : HTML, CSS, JavaScript, JSP, jQuery
+- Back-end : Spring Boot
 - 버전 및 이슈관리 : Github, Github Project
 - 협업 툴 : Discord, Notion
 - 데이터베이스: Mysql
 - 디자인 : Figma
+- API : YOUTUBE DATA API V3
+- 서버 : 자체 홈서버
 <br>
 
 ### 개발 기간
@@ -61,7 +63,8 @@
 
 | 회원가입 |
 |----------|
-![스크린샷 2024-06-23 151052](https://github.com/Software-Engeering/Software-Engineering/assets/66588512/a7808066-36da-497c-8aff-28eac9c8de5a)
+![image](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/01fcbc65-ce4c-4aaa-afbb-9396d2e40ae3)
+
 
 
 <br>
@@ -96,7 +99,8 @@
 
 | 플레이리스트 음악 리스트 |
 |----------|
-![스크린샷 2024-06-23 152408](https://github.com/Software-Engeering/Software-Engineering/assets/66588512/f09b40e8-774f-48b0-991e-4e2b71deb759)
+![image](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/82ffbf01-1f0e-4c43-ad1c-eb142cf171d1)
+
 
 
 
@@ -113,4 +117,20 @@
 
 
 <br>
+
+## 발표자료
+![1](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/ceaea1a0-28a9-40d8-9904-9b1176a8c38d)
+![2](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/2e8e0f9e-2f3b-4f2b-b093-c6e438973ba2)
+![3](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/6ebb2c91-d3f8-46ea-ae89-7a692db4082b)
+![4](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/4686dce7-f34d-4cd3-a4e5-11ef4e237c7e)
+![5](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/1c580e02-6b32-4d6b-9671-4dd8abdf0f68)
+![6](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/ffbfc50a-d5fe-4904-b05d-0e0ee4f04fd3)
+![7](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/417be701-2883-447d-b173-9a4eb81a61a7)
+![8](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/8ce69695-c951-4c34-b352-47595f01017b)
+![9](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/c8d26706-f22f-4eba-a39c-0f4cb95816fb)
+![10](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/e266bf77-442f-4ed5-846a-035be84d8f36)
+![11](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/47ad9948-77e3-4dda-adb4-4b65e6326ff7)
+![12](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/7433d162-1a34-4fb2-b1bb-36578b75a84f)
+
+
 
