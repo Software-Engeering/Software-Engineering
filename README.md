@@ -61,7 +61,8 @@
 
 | 회원가입 |
 |----------|
-![스크린샷 2024-06-23 151052](https://github.com/Software-Engeering/Software-Engineering/assets/66588512/a7808066-36da-497c-8aff-28eac9c8de5a)
+![image](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/272f41fb-475b-429a-a408-99346f1f521b)
+
 
 
 <br>
@@ -96,7 +97,8 @@
 
 | 플레이리스트 음악 리스트 |
 |----------|
-![스크린샷 2024-06-23 152408](https://github.com/Software-Engeering/Software-Engineering/assets/66588512/f09b40e8-774f-48b0-991e-4e2b71deb759)
+![image](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/82ffbf01-1f0e-4c43-ad1c-eb142cf171d1)
+
 
 
 
