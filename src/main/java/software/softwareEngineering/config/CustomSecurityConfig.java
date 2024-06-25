@@ -34,7 +34,7 @@ public class CustomSecurityConfig {
             form
                 .loginPage("/loginForm")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/user/playlistForm");
+                    .defaultSuccessUrl("/user/playlistForm", true);
         });
 
         return http.build();

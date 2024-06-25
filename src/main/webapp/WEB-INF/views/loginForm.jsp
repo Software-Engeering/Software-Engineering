@@ -96,8 +96,8 @@
     <div class="content">
         <div class="input-and-button">
             <form action="/login" method="post">
-                <input type="text" name="username" placeholder="Username" class="field"/><br/>
-                <input type="password" name="password" placeholder="Password" class="field"/><br/>
+                <input type="text" name="username" placeholder="Username" class="field" required/><br/>
+                <input type="password" name="password" placeholder="Password" class="field" required/><br/>
                 <button class="button" type="submit" id="loginButton">
                     <span style="font-family: Inter;font-weight: 500;font-size: 16px;line-height: 1.5;color:#FFFFFF;text-align:center;">로그인</span>
                 </button>
