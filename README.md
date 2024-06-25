@@ -61,7 +61,7 @@
 
 | 회원가입 |
 |----------|
-![image](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/272f41fb-475b-429a-a408-99346f1f521b)
+![image](https://github.com/Software-Engeering/Software-Engineering/assets/84756846/01fcbc65-ce4c-4aaa-afbb-9396d2e40ae3)
 
 
 
